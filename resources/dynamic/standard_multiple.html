@@ -1,0 +1,74 @@
+﻿{%
+Dim inputName = CurrentQuestion.InputName()
+Dim inputValue
+Dim caption
+Dim image
+Dim attrExclusive
+Dim total
+Dim maxPerColumn
+Dim remainder
+Dim columnCounter
+Dim ar = CurrentQuestion.AvailableResponses
+Dim i
+Dim j
+
+Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
+
+IF numberOfColumns > 0 Then
+
+	columnCounter = numberOfColumns
+    
+    For i = 1 To CurrentQuestion.AvailableResponses.Count 
+        inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
+        caption     = CurrentQuestion.AvailableResponses[i].Caption
+        image		= CurrentQuestion.AvailableResponses.ResourceURL[i]
+        attrExclusive = On(CurrentQuestion.AvailableResponses[i].IsExclusive, " exclusive", "")
+        
+        if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
+        	<div class="column">
+        {% EndIf %}
+        
+        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= i-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+            {% IF image <> "" Then %}
+                <img src="{%= image %}" />
+            {% EndIF %}
+            <span class="response_text">{%:= caption %}</span>
+            <div style="clear:both"></div>
+        </div>
+        
+        {%
+        columnCounter = columnCounter - 1
+        
+        IF columnCounter < 1 Then
+        
+        	columnCounter = numberOfColumns
+            
+            %}
+            <div style="clear:both"></div>
+            </div>
+            
+        {% EndIF
+    
+    Next
+    
+Else
+	
+    For j = 1 To CurrentQuestion.AvailableResponses.Count 
+        inputValue  = CurrentQuestion.AvailableResponses[j].InputValue()
+        caption     = CurrentQuestion.AvailableResponses[j].Caption
+        image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
+        attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
+    %}
+    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+        {% IF image <> "" Then %}
+            <img src="{%= image %}" />
+        {% EndIF %}
+        <span class="response_text">{%:= caption %}</span>
+        <div style="clear:both"></div>
+    </div>
+    {% Next %}
+    <div style="clear:both"></div>
+    </div>
+{% EndIF %}
+</div>
+<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />

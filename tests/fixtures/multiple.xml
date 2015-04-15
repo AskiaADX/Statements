@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fixture xmlns="http://www.askia.com/ADCUnitTestSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.askia.com/ADCUnitTestSchema http://www.askia.com/Downloads/dev/schemas/adc2.0/UnitTests.xsd">
+  <arrange>
+    <Survey Name="MultipleSurvey" CurrentQuestion="multiple" Version="1.0" Full="1" MaxQuestionID="1" MaxResponseID="2">
+      <Languages>
+      <Language ID="2057" Abbr="ENG" Name="English (United Kingdom)" Default="1"/>
+      </Languages>
+      <Questions>
+      <Question ID="1" Shortcut="multiple" Order="1" ElementType="question" AllowDK="1" QuestionType="closed" MaxResponse="2" MinResponse="0" Translated="0">
+      <LongCaption>multiple</LongCaption>
+      <Modalities>
+      <Modality ID="1">
+      <ShortCaption>A</ShortCaption>
+      </Modality>
+      <Modality ID="2">
+      <ShortCaption>B</ShortCaption>
+      </Modality>
+      </Modalities>
+      </Question>
+      </Questions>
+      <ErrorMessages/>
+      <ScreenGroups/>
+      <Resources/>
+      <InternetOptions>
+        <Buttons/>
+        <Page Layout="0"/>
+        <Errors/>
+        <Table/>
+        <JavaScript>
+          <LivePath>../Scripts/</LivePath>
+        </JavaScript>
+        <Exit/>
+      </InternetOptions>
+    </Survey>
+  </arrange>
+</fixture>
