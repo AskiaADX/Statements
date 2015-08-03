@@ -24,7 +24,7 @@
 			$(this).css({'margin':'0 0 0 auto'});
 		}
 		
-		if ( $(this).parents('.controlContainer').outerWidth() <= 350 ) options.columns = 1;
+		//if ( $(this).parents('.controlContainer').outerWidth() <= 350 ) options.columns = 1;
 		if ( options.columns > 1 )  {
 			/*$('.column').width( (100/options.columns) + '%' ).css('float','left')*/ 
 			

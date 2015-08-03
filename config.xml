@@ -23,7 +23,11 @@
 		v1.0.9 - fixed ie7/8 retained selection bug
 		v1.0.10 - updated jquery to 1.11.1
 			    - fixed image loading glitch
+<<<<<<< HEAD
 		v1.0.11 - fixed response sizing problem when merging screens
+=======
+	    v1.0.11 - deleted columns to 1 when width is less than 350px
+>>>>>>> origin/master
     ]]>
     </description>
     <author>
