@@ -33,7 +33,7 @@
 			$(this).find('.column').css({'display':'block','width':'100%'});
 			$(this).find('.responseItem').css({'display':'block','float':'left'}).width( (100/options.columns) + '%');
 			var widthDiff = $(this).find('.responseItem').outerWidth(true) - $(this).find('.responseItem').width(),
-				newWidth = (($('.column').outerWidth() - (widthDiff * options.columns))/options.columns) - 
+				newWidth = (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) - 
 							parseInt($(this).find('.responseItem').eq(0).css('margin-left')) + "px";
 			// Fix weird IE offset created by margin
 			$(this).find('.responseItem').width( newWidth );
