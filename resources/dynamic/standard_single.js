@@ -9,5 +9,5 @@ For i = 1 To ar.Count
 	inputName = ar[i].InputName()
 	caption   = ar[i].Caption
 %}
-{caption : "{%= caption %}", element : $('#{%= inputName%}')}{%= On(i < ar.Count, ",", "") %}
+{caption : "{%:= caption %}", element : $('#{%= inputName%}')}{%= On(i < ar.Count, ",", "") %}
 {% Next %}
