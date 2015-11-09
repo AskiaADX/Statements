@@ -7,7 +7,7 @@
   <info>
     <name>adc2-statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <date>2013-07-26</date>
     <description>
       <![CDATA[Describe your ADC here
@@ -28,6 +28,7 @@
 =======
 	    v1.0.11 - deleted columns to 1 when width is less than 350px
 >>>>>>> origin/master
+		v1.0.12 - fixed standard-single.js =caption to :=caption
     ]]>
     </description>
     <author>
