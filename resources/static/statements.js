@@ -323,6 +323,7 @@
 				//currentValue = items[i].element.val();
 				currentValue = currentValues[i];
 				$container.find('.responseItem').each(function (index) {
+					if ( !$(this).hasClass('exclusive') ) $(this).addClass('cb');
 					$(this).data('id',index);
 					var value = $(this).data('value'),
 						isSelected = $(this).data('value') == currentValue ? true : false;
