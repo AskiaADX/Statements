@@ -52,7 +52,7 @@ Else
         caption     = CurrentQuestion.AvailableResponses[j].Caption
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
     %}
-    <div class="responseItem" data-value="{%= inputValue %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+    <div class="responseItem" data-value="{%= inputValue %}" unselectable="on" onselectstart="return false;" onmousedown="return false;">
         {% IF image <> "" Then %}
             <img src="{%= image %}" />
         {% EndIF %}
@@ -61,7 +61,5 @@ Else
     </div>
     {% Next %}
     <div style="clear:both"></div>
-    </div>
 {% EndIF %}
-</div>
 <input type="hidden" id="{%= inputName %}" name="{%= inputName %}" value="{%= CurrentQuestion.InputValue() %}"  />

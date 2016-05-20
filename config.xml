@@ -29,6 +29,7 @@
 	    v1.0.11 - deleted columns to 1 when width is less than 350px
 >>>>>>> origin/master
 		v1.0.12 - fixed standard-single.js =caption to :=caption
+		v1.0.13 - fixed unclosed tags
     ]]>
     </description>
     <author>
