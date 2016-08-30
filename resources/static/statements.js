@@ -31,7 +31,7 @@
 			// Try to make all the repsonses the same height
 			$(this).find('.responseItem').css('height','');
 			$(this).find('.column').css({'display':'block','width':'100%'});
-			$(this).find('.responseItem').css({'display':'block','float':'left'}).width( (100/options.columns) + '%');
+			$(this).find('.responseItem').css({'display':'inline-block'}).width( (100/options.columns) + '%');
 			var widthDiff = $(this).find('.responseItem').outerWidth(true) - $(this).find('.responseItem').width(),
 				newWidth = (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) - 
 							parseInt($(this).find('.responseItem').eq(0).css('margin-left')) + "px";
