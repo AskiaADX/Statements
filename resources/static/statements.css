@@ -18,17 +18,7 @@
     vertical-align:middle;
 	cursor:pointer;
 	left:0px;
-	
-	/* Decoration */
-	border: 1px solid #000;
-	background: #fff; 
-	background: -webkit-gradient(linear, 0 0, 0 100%, from( #fff ) to( #cecece )); 
-	background: -webkit-linear-gradient( #fff , #cecece ); 
-	background: -moz-linear-gradient( 	 #fff , #cecece ); 
-	background: -ms-linear-gradient( 	 #fff , #cecece ); 
-	background: -o-linear-gradient( 	 #fff , #cecece ); 
-	background: linear-gradient( 		 #fff , #cecece ); 	
-	
+		
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -44,9 +34,7 @@
 { 
 	display:block;
 	padding:10px;
-	line-height:140%;
-	font-size:12px;
-	color:#000;
+	line-height:1.2;
 }
 .adc-statements .responseItem img 
 {
@@ -57,5 +45,5 @@
 
 .adc-statements .responseItem.selected .response_text 
 {
-    color:#fff; 
+
 }
