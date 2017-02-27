@@ -95,7 +95,6 @@ Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
 	margin: {%= responseMargin%};
 	
 	z-index: 0;
-    transition: background-color ease-in-out .3s, color ease-in-out .3s;
 }
 
 #adc_{%= CurrentADC.InstanceId%} .responseItem:hover
