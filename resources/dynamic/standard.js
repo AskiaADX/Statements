@@ -24,6 +24,7 @@ $(window).load(function() {
 		showResponseHoverFontColour: {%= (CurrentADC.PropValue("showResponseHoverFontColour") = "1") %},
 		showResponseHoverBorder: {%= (CurrentADC.PropValue("showResponseHoverBorder") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
+      	currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
