@@ -196,7 +196,7 @@ Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
 	{% Else %}
 		border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%});
 	{% EndIF %}	
-	background-color: rgb({%= nsResponseSelectedColourPrimary%});
+	background-color: rgb({%= nsResponseSelectedColourPrimary%}) !important;
 	
 	-webkit-box-shadow: {%= nsResponseSelectedShadow%};
 	-moz-box-shadow: {%= nsResponseSelectedShadow%};
