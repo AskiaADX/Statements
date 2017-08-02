@@ -64,13 +64,15 @@ EndIF
 
 Dim percentageWidth
 Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
+
+Dim animateResponses =CurrentADC.PropValue("animateResponses")
 %}
 
 
 /* Reponses */
 #adc_{%= CurrentADC.InstanceId%} .responseItem 
 {   
-	
+    
 	/* Decoration */
 	{% IF CurrentADC.PropValue("borderThickness") = "none" Then %}
 		border: none;
@@ -95,6 +97,8 @@ Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
 	margin: {%= responseMargin%};
 	
 	z-index: 0;
+    
+    box-sizing: border-box;
 }
 
 #adc_{%= CurrentADC.InstanceId%} .responseItem:hover
@@ -206,4 +210,11 @@ Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
 #adc_{%= CurrentADC.InstanceId%} .ns.selected .response_text 
 {
     color:rgb({%= nsResponseSelectedFontColour%});
+}
+
+.animate {
+    -webkit-transition: all .5s ease-in-out;
+     -moz-transition: all .5s ease-in-out;
+     -o-transition: all .5s ease-in-out;
+     transition: all .5s ease-in-out;
 }

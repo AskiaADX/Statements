@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
@@ -27,7 +27,8 @@
 		v1.0.12 - fixed standard-single.js =caption to :=caption
 		v1.0.13 - fixed unclosed tags
 		v1.0.14 - fixed alignment of the responses with column > 1
-		v2.0.0 - Theme implementation]]></description>
+		v2.0.0 - Theme implementation
+		v2.0.1 - PureJS version]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -72,10 +73,7 @@
             <![endif]-->
         ]]></yield>
       </content>
-      <content fileName="jquery-1.11.1.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery-ui-1.10.4.custom.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery.transit.min.js" type="javascript" mode="share" position="head" />
+      <content fileName="domready.js" type="javascript" mode="share" position="head" />
       <content fileName="rainbowvis.js" type="javascript" mode="share" position="head" />
       <content fileName="statements.js" type="javascript" mode="static" position="head" />
       <content fileName="standard.js" type="javascript" mode="dynamic" position="foot" />
@@ -103,9 +101,7 @@
       </property>
       <property xsi:type="standardProperty" id="controlAlign" name="Control Alignment" type="string" mode="static">
         <description><![CDATA[
-          
 	          The alignment of the control
-	        
         ]]></description>
         <value><![CDATA[left]]></value>
         <options>
@@ -149,18 +145,6 @@
       <property xsi:type="standardProperty" id="animateResponses" name="Animate Responses" type="boolean" mode="static" require="false" visible="true">
         <description><![CDATA[Whether the resonses fly into the screen]]></description>
         <value><![CDATA[0]]></value>
-      </property>
-      <property xsi:type="standardProperty" id="animationSpeed" name="Animation Speed" type="string" mode="static">
-        <description><![CDATA[
-          Speed of the animation
-        ]]></description>
-        <value><![CDATA[fast]]></value>
-        <options>
-          <option value="very fast" text="Very Fast" />
-          <option value="fast" text="Fast" />
-          <option value="medium" text="Medium" />
-          <option value="slow" text="Slow" />
-        </options>
       </property>
       <property xsi:type="standardProperty" id="autoForward" name="Auto Forward" type="boolean" mode="static" require="false" visible="true">
         <description><![CDATA[Whether the question continues to the next automatically if a single choice question]]></description>
