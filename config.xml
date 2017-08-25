@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
@@ -28,7 +28,8 @@
 		v1.0.13 - fixed unclosed tags
 		v1.0.14 - fixed alignment of the responses with column > 1
 		v2.0.0 - Theme implementation
-		v2.0.1 - PureJS version]]></description>
+		v2.0.1 - PureJS version
+		v2.0.2 - Fixed max height of the responses]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>

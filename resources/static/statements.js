@@ -160,7 +160,7 @@
         // CHECK COLUMNS
         if ( options.columns > 1 )  {
 			
-			// Try to make all the repsonses the same height
+			// Try to make all the responses the same height
            	for ( i=0; i < responseItems.length; i++ ) {
                 responseItems[i].style.height = "";
             }
@@ -177,19 +177,18 @@
 			
             var style = responseItems[0].currentStyle || window.getComputedStyle(responseItems[0]),
             	widthDiff = (responseItems[0].offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight)) - responseItems[0].clientWidth,
-            	newWidth = ((columns[0].offsetWidth - (widthDiff * options.columns))/options.columns);
+            	newWidth = ((columns[0].offsetWidth - (widthDiff * options.columns))/options.columns) - 10;
             for ( i = 0; i < responseItems.length; i++ ) {
                 responseItems[i].style.width = newWidth+'px';
             }
             
-            var height = responseItems[0].offsetHeight;
-            var maxResponseHeight = responseItems[0].offsetHeight;
-            for ( i = 0; i < responseItems; i++) {
-                maxResponseHeight = Math.max(height, responseItems[i].offsetHeight);
+            var maxResponseHeight = [];
+            for ( i = 0; i < responseItems.length; i++) {
+                maxResponseHeight.push(responseItems[i].offsetHeight);
             }
-            
+            var maxHeight = Math.max.apply(null, maxResponseHeight);
             for ( i = 0; i < responseItems.length; i++ ) {
-                responseItems[i].style.height = maxResponseHeight+'px';
+                responseItems[i].style.height = maxHeight +'px';
             }
 
 		}
