@@ -157,8 +157,9 @@
             container.style.margin = '0 0 0 auto';
 		}
         
-        // CHECK COLUMNS
-        if ( options.columns > 1 )  {
+        // CHECK COLUMNS 480
+        var screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if ( options.columns > 1 && screenWidth > 480 )  {
 			
 			// Try to make all the responses the same height
            	for ( i=0; i < responseItems.length; i++ ) {
