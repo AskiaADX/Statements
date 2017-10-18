@@ -1,5 +1,5 @@
 <div class="controlContainer" style="visbility:hidden;">
-    <div id="adc_{%= CurrentADC.InstanceId %}" class="adc-statements">
+    <div id="adc_{%= CurrentADC.InstanceId %}" class="adc-statements" style="visibility:hidden;">
      {% IF CurrentQuestion.Type = "single" Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_single.html").ToText()%}
      {% ElseIf CurrentQuestion.Type = "multiple" Then %}

@@ -490,6 +490,8 @@
                 revealEl( responseItems[i], 100+ (i*50) );
             }
         }
+        
+        setTimeout(function(){ document.querySelector("#adc_" + this.instanceId).style.visibility = 'visible'; }, 300);
     }
     
 	window.Statements = Statements;
