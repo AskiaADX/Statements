@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>2.0.6</version>
+    <version>2.0.7</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
@@ -32,7 +32,8 @@
 		v2.0.2 - Fixed max height of the responses
 		v2.0.4 - Forced single column when screen width less than 480px
 		v2.0.5 - Fixed visibility of the control
-		v2.0.6 - Added Merge column width parameter]]></description>
+		v2.0.6 - Added Merge column width parameter
+		v2.0.6 - Fixed autoForward]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
