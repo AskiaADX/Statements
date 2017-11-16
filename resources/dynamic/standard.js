@@ -25,6 +25,7 @@ DomReady.ready(function() {
 		showResponseHoverBorder: {%= (CurrentADC.PropValue("showResponseHoverBorder") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
+        mergeColumnWidth : '{%= CurrentADC.PropValue("mergeColumnWidth") %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}
