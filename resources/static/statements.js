@@ -144,7 +144,7 @@
                submitBtns.push(inputs[i]);
             }
         }
-        nextBtn = submitBtns[submitBtns.length-1];
+        nextBtn = document.getElementsByName('Next')[0];
                 
         container.style.maxWidth = options.maxWidth;
         container.style.width = options.controlWidth;
