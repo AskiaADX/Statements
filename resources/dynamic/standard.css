@@ -101,8 +101,7 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
     box-sizing: border-box;
 }
 
-#adc_{%= CurrentADC.InstanceId%} .responseItem:hover
-{
+#adc_{%= CurrentADC.InstanceId%} .responseItem:hover {
 
 	/* Decoration */
 	{% IF showResponseHoverBorder = "1" Then %}
@@ -117,9 +116,21 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
 	-moz-box-shadow: {%= responseHoverShadow%};
 	box-shadow: {%= responseHoverShadow%};
 }
+@media screen and (max-width: 800px) {
+    #adc_{%= CurrentADC.InstanceId%} .responseItem:hover {
 
-#adc_{%= CurrentADC.InstanceId%} .response_text 
-{ 
+        /* Decoration */
+        border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
+        {% IF showResponseHoverColour = "1" Then %}
+        background-color: rgb({%= responseColourPrimary%}) !important;
+        {% EndIF %}
+        -webkit-box-shadow: {%= responseShadow%};
+        -moz-box-shadow: {%= responseShadow%};
+        box-shadow: {%= responseShadow%};
+    }
+}
+
+#adc_{%= CurrentADC.InstanceId%} .response_text { 
 	display:block;
 	font-size:{%= fontSize%};
 	text-align:{%= textAlign%};
@@ -128,13 +139,18 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
 	line-height:{%= responseTextLineHeight%};
 }
 
-#adc_{%= CurrentADC.InstanceId%} .responseItem:hover .response_text 
-{ 
+#adc_{%= CurrentADC.InstanceId%} .responseItem:hover .response_text {
 	{% IF showResponseHoverFontColour = "1" Then %}
 		color:rgb({%= responseHoverFontColour%});
 	{% EndIF %}
 }
-
+@media screen and (max-width: 800px) {
+    #adc_{%= CurrentADC.InstanceId%} .responseItem:hover .response_text { 
+        {% IF showResponseHoverFontColour = "1" Then %}
+        color:rgb({%= fontColour %});
+        {% EndIF %}
+    }
+}
 #adc_{%= CurrentADC.InstanceId%} .responseItem img {
 		
 	float: {%= imageAlign%};
