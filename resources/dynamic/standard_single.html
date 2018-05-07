@@ -7,17 +7,25 @@ Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
+Dim flowDirection
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
+Dim flow = CurrentADC.PropValue("columnsFlow")
+Dim nbColumns = numberOfColumns
 
 IF numberOfColumns > 0 Then
     
    	columnCounter = numberOfColumns
 
     For i = 1 To CurrentQuestion.AvailableResponses.Count 
-        inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
-        caption     = CurrentQuestion.AvailableResponses[i].Caption
-        image		= CurrentQuestion.AvailableResponses.ResourceURL[i]
+        If (flow = "vertical") Then
+            flowDirection = (((1 + (Int((i - 1) / nbColumns))) + ((Int(ar.Count / nbColumns)) * ((i - 1) mod nbColumns))) * (1 - (Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))))) + ((Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))) * i)
+        Else
+            flowDirection = i
+        EndIf
+        inputValue  = CurrentQuestion.AvailableResponses[flowDirection].InputValue()
+        caption     = CurrentQuestion.AvailableResponses[flowDirection].Caption
+        image		= CurrentQuestion.AvailableResponses.ResourceURL[flowDirection]
         
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">

@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>2.0.9</version>
+    <version>2.0.10</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
@@ -35,7 +35,8 @@
 		v2.0.6 - Added Merge column width parameter
 		v2.0.7 - Fixed autoForward
 		v2.0.8 - Fixed autoForward
-		v2.0.9 - Fixed hover styling for small screen]]></description>
+		v2.0.9 - Fixed hover styling for small screen
+		v2.0.10 - Added Flow direction]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -120,6 +121,14 @@
           The maximum width of the control
         ]]></description>
         <value><![CDATA[0]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="columnsFlow" name="Flow direction of the columns" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[The flow direction when multi columns]]></description>
+        <value><![CDATA[horizontal]]></value>
+        <options>
+          <option value="horizontal" text="Horizontal" />
+          <option value="vertical" text="Vertical" />
+        </options>
       </property>
       <property xsi:type="standardProperty" id="mergeColumnWidth" name="Merge column width" type="number" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Merge column width value in pixels]]></description>

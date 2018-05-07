@@ -11,24 +11,32 @@ Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
+Dim flowDirection
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
+Dim flow = CurrentADC.PropValue("columnsFlow")
+Dim nbColumns = numberOfColumns
 
 IF numberOfColumns > 0 Then
 
 	columnCounter = numberOfColumns
     
     For i = 1 To CurrentQuestion.AvailableResponses.Count 
-        inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
-        caption     = CurrentQuestion.AvailableResponses[i].Caption
-        image		= CurrentQuestion.AvailableResponses.ResourceURL[i]
-        attrExclusive = On(CurrentQuestion.AvailableResponses[i].IsExclusive, " exclusive", "")
+        If (flow = "vertical") Then
+            flowDirection = (((1 + (Int((i - 1) / nbColumns))) + ((Int(ar.Count / nbColumns)) * ((i - 1) mod nbColumns))) * (1 - (Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))))) + ((Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))) * i)
+        Else
+            flowDirection = i
+        EndIf
+        inputValue  = CurrentQuestion.AvailableResponses[flowDirection].InputValue()
+        caption     = CurrentQuestion.AvailableResponses[flowDirection].Caption
+        image		= CurrentQuestion.AvailableResponses.ResourceURL[flowDirection]
+        attrExclusive = On(CurrentQuestion.AvailableResponses[flowDirection].IsExclusive, " exclusive", "")
         
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
         
-        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= i-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
             {% IF image <> "" Then %}
                 <img src="{%= image %}" />
             {% EndIF %}
