@@ -30,9 +30,9 @@ IF numberOfColumns > 0 Then
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
-        <div class="responseItem" data-value="{%= inputValue %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+        <div class="responseItem" data-value="{%= inputValue %}" onmousedown='return false;'>
             {% IF image <> "" Then %}
-                <img src="{%= image %}" />
+            <img src="{%= image %}" alt="{%:= caption %}"/>
             {% EndIF %}
             <span class="response_text">{%:= caption %}</span>
             <div style="clear:both"></div>
@@ -60,9 +60,9 @@ Else
         caption     = CurrentQuestion.AvailableResponses[j].Caption
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
     %}
-    <div class="responseItem" data-value="{%= inputValue %}" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+    <div class="responseItem" data-value="{%= inputValue %}" onmousedown="return false;">
         {% IF image <> "" Then %}
-            <img src="{%= image %}" />
+            <img src="{%= image %}" alt="{%:= caption %}"/>
         {% EndIF %}
         <span class="response_text">{%:= caption %}</span>
         <div style="clear:both"></div>

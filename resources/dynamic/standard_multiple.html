@@ -36,9 +36,9 @@ IF numberOfColumns > 0 Then
         	<div class="column">
         {% EndIf %}
         
-        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" onmousedown='return false;'>
             {% IF image <> "" Then %}
-                <img src="{%= image %}" />
+                <img src="{%= image %}" alt="{%:= caption %}"/>
             {% EndIF %}
             <span class="response_text">{%:= caption %}</span>
             <div style="clear:both"></div>
@@ -67,9 +67,9 @@ Else
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
         attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
     %}
-    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" onmousedown="return false;">
         {% IF image <> "" Then %}
-            <img src="{%= image %}" />
+            <img src="{%= image %}" alt="{%:= caption %}" />
         {% EndIF %}
         <span class="response_text">{%:= caption %}</span>
         <div style="clear:both"></div>
