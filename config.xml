@@ -37,7 +37,8 @@
 		v2.0.8 - Fixed autoForward
 		v2.0.9 - Fixed hover styling for small screen
 		v2.0.10 - Added Flow direction
-		v2.0.11 - Add alt tag for img]]></description>
+		v2.0.11 - Added alt attribute for img
+				- Modifications for HTML5 compatibility]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>

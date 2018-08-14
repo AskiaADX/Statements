@@ -234,3 +234,14 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
      -o-transition: all .5s ease-in-out;
      transition: all .5s ease-in-out;
 }
+
+/* Instead of attribute unselectable and onselectstart not allowed for div in HTML5 */
+
+#adc_{%= CurrentADC.InstanceId%} .responseItem {
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+} 
+
