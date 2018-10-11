@@ -1,6 +1,6 @@
 <div class="controlContainer" style="visibility:hidden;">
     <div id="adc_{%= CurrentADC.InstanceId %}" class="adc-statements" style="visibility:hidden;">
-     {% IF CurrentQuestion.Type = "single" Then %}
+     {% IF (CurrentQuestion.Type = "single") or (CurrentQuestion.Type = "single-loop") Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_single.html").ToText()%}
      {% ElseIf CurrentQuestion.Type = "multiple" Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_multiple.html").ToText()%}

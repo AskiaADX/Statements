@@ -30,7 +30,7 @@ DomReady.ready(function() {
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}
 		items : [
-			{% IF CurrentQuestion.Type = "single" Then %}
+			{% IF (CurrentQuestion.Type = "single") or (CurrentQuestion.Type = "single-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
 			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
