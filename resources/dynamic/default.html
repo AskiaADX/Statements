@@ -1,7 +1,7 @@
 <div id="adc_{%= CurrentQuestion.Id %}" class="adc-default">
 {% If (CurrentQuestion.Type = "single") or (CurrentQuestion.Type = "single-loop") Then %}
     {%:= CurrentADC.GetContent("dynamic/single.html").ToText() %}
-{% ElseIf CurrentQuestion.Type = "multiple" Then %}
+{% ElseIf (CurrentQuestion.Type = "multiple") or (CurrentQuestion.Type = "multiple-loop") Then %}
     {%:= CurrentADC.GetContent("dynamic/multiple.html").ToText() %}
 {% EndIf %}
 </div>

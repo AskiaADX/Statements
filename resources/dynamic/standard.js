@@ -7,7 +7,7 @@ DomReady.ready(function() {
 		imageAlign : '{%= CurrentADC.PropValue("imageAlign") %}',
 		imageWidth : 100,
 		imageHeight : 100,
-		isMultiple: {%= (CurrentQuestion.Type = "multiple") %},
+		isMultiple: {%= (CurrentQuestion.Type = "multiple") or (CurrentQuestion.Type = "multiple-loop") %},
 		controlWidth : '{%= CurrentADC.PropValue("controlWidth") %}',
 		columns: {%= CurrentADC.PropValue("columns") %},
 		maxWidth : '{%= CurrentADC.PropValue("maxWidth") %}',
@@ -32,7 +32,7 @@ DomReady.ready(function() {
 		items : [
 			{% IF (CurrentQuestion.Type = "single") or (CurrentQuestion.Type = "single-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
-			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
+			{% ElseIf (CurrentQuestion.Type = "multiple") or (CurrentQuestion.Type = "multiple-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
 			{% EndIF %}
 		]

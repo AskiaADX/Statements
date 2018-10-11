@@ -40,7 +40,7 @@
 		v2.0.11 - Added alt attribute for img
 				- Modifications for HTML5 compatibility
 		v2.0.12 - Fixed closing div for multi column
-		v2.0.13 - Added compatibility with single-loop]]></description>
+		v2.0.13 - Added compatibility with single-loop and multiple-loop]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
