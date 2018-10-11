@@ -11,12 +11,19 @@ Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
+Dim k
 Dim flowDirection
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
 Dim flow = CurrentADC.PropValue("columnsFlow")
 Dim nbColumns = numberOfColumns
 
+Dim inputAnswers = ""
+
+For k = 1 To CurrentQuestion.Answers.Count 
+    inputAnswers = inputAnswers + CurrentQuestion.Answers[k].InputValue().ToString() + On(k < CurrentQuestion.Answers.Count,",","")
+Next k
+    
 IF numberOfColumns > 0 Then
 
 	columnCounter = numberOfColumns
@@ -76,4 +83,4 @@ Else
     {% Next %}
     <div style="clear:both"></div>
 {% EndIF %}
-<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
+<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= inputAnswers %}" />
