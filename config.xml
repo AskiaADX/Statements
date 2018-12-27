@@ -50,13 +50,13 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" RequireLoopDepth="false" />
+      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" RequireLoopDepth="0" />
       <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
   </info>
   <outputs defaultOutput="fallback">
-    <output id="fallback">
+    <output id="fallback" ManageLoopDepth="0">
       <description><![CDATA[
         Fallback when the browser doesn&acute;t support Javascript
       ]]></description>
@@ -67,7 +67,7 @@
       <content fileName="multiple.html" type="html" mode="dynamic" position="none" />
       <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
     </output>
-    <output id="standard">
+    <output id="standard" ManageLoopDepth="0">
       <description><![CDATA[
         Output when the browser support Javascript
       ]]></description>
