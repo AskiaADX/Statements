@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<control  xmlns="http://www.askia.com/2.1.0/ADCSchema"
+<control  xmlns="http://www.askia.com/2.2.0/ADCSchema"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.askia.com/2.1.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.1.0/ADCSchema.xsd"
-          version="2.1.0"
-          askiaCompat="5.4.2">
+          xsi:schemaLocation="http://www.askia.com/2.2.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.2.0/ADCSchema.xsd"
+          version="2.2.0"
+          askiaCompat="5.5.2">
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
@@ -41,7 +41,8 @@
 				- Modifications for HTML5 compatibility
 		v2.0.12 - Fixed closing div for multi column
 		v2.0.13 - Added compatibility with single-loop and multiple-loop
-		v3.0.0 - AvailableAnswers]]></description>
+		v3.0.0 - AvailableAnswers
+    v3.0.1 - Fixed columns for IE]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -50,15 +51,15 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" requireLoopDepth="0" />
+      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" requireLoopDepth="false" />
       <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
   </info>
   <outputs defaultOutput="fallback">
-    <output id="fallback" manageLoopDepth="0">
+    <output id="fallback">
       <description><![CDATA[
-        Fallback when the browser doesn&acute;t support Javascript
+        Fallback when the browser doesnacute;t support Javascript
       ]]></description>
       <condition><![CDATA[
         Not(Browser.Support("javascript"))
@@ -67,7 +68,7 @@
       <content fileName="multiple.html" type="html" mode="dynamic" position="none" />
       <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
     </output>
-    <output id="standard" manageLoopDepth="0">
+    <output id="standard">
       <description><![CDATA[
         Output when the browser support Javascript
       ]]></description>
@@ -199,7 +200,7 @@
       </property>
       <property xsi:type="standardProperty" id="responseMargin" name="Response Margin" type="string" mode="static" require="false" visible="false">
         <description><![CDATA[This will set the margin around the responses]]></description>
-        <value><![CDATA[0.3em]]></value>
+        <value><![CDATA[0.2em]]></value>
       </property>
       <property xsi:type="standardProperty" id="responseTextLineHeight" name="Response Text Line Height" type="string" mode="dynamic" require="true" visible="false">
         <description><![CDATA[When set this will force the height of the reponses]]></description>

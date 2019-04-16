@@ -1,5 +1,5 @@
 (function () {
-    
+
     // Polyfill: Add a getElementsByClassName function IE < 9
     function polyfillGetElementsByClassName() {
         if (!document.getElementsByClassName) {
@@ -27,7 +27,7 @@
             }
         }
 	}
-    
+
 	function hasClass(el, className) {
         return el.classList ? el.classList.contains(className) : new RegExp('\\b'+ className+'\\b').test(el.className);
 	}
@@ -55,11 +55,11 @@
 	}
 	function rgbToHex(arg) {
 		arg = parseInt(arg, 10).toString(16);
-		return arg.length === 1 ? '0' + arg : arg; 
+		return arg.length === 1 ? '0' + arg : arg;
 	}
 	function processRgb(arg) {
 		arg = arg.split(',');
-	
+
 		if ( (arg.length === 3 || arg.length === 4) && isRgb(arg[0]) && isRgb(arg[1]) && isRgb(arg[2]) ) {
 			if (arg.length === 4 && !isNumeric(arg[3])) { return null; }
 			return '#' + rgbToHex(arg[0]).toUpperCase() + rgbToHex(arg[1]).toUpperCase() + rgbToHex(arg[2]).toUpperCase();
@@ -67,13 +67,13 @@
 			return null;
 		}
 	}
-	
+
 	function Statements(options) {
 		this.instanceId = options.instanceId || 1;
         var container = document.getElementById("adc_" + this.instanceId),
             images = [].slice.call(container.getElementsByTagName("img")),
         	total_images = container.getElementsByTagName("img").length;
-        
+
         function loadImages( images, callback ) {
             var count = 0;
 
@@ -107,11 +107,11 @@
                 init(options);
             }
         });
-        
+
     }
-    
+
     function init(options) {
-		
+
 		this.instanceId = options.instanceId || 1;
 		this.options = options;
 		(options.responseWidth = options.responseWidth || "auto");
@@ -124,7 +124,7 @@
 		(options.useRange = Boolean(options.useRange));
         (options.currentQuestion = options.currentQuestion || '');
         (options.mergeColumnWidth = parseInt(options.mergeColumnWidth, 10) || 480);
-		
+
         polyfillGetElementsByClassName();
 		var container = document.getElementById("adc_" + this.instanceId),
             columns =  container.getElementsByClassName('column'),
@@ -138,52 +138,58 @@
 			total_images = container.getElementsByTagName("img").length,
 			images_loaded = 0,
             animateResponses = Boolean(options.animateResponses);
-                
+
         for(var i = 0; i < inputs.length; i++) {
             if(inputs[i].type.toLowerCase() === 'submit') {
                submitBtns.push(inputs[i]);
             }
         }
         nextBtn = document.getElementsByName('Next')[0];
-                
+
         container.style.maxWidth = options.maxWidth;
         container.style.width = options.controlWidth;
         container.parentNode.style.width = '100%';
         container.parentNode.style.overflow = 'hidden';
-		
+
 		if ( options.controlAlign === "center" ) {
             container.parentNode.style.textAlign = 'center';
             container.style.margin = '0px auto';
 		} else if ( options.controlAlign === "right" ) {
             container.style.margin = '0 0 0 auto';
 		}
-        
+
         // CHECK COLUMNS 480
         var screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         if ( options.columns > 1 && screenWidth > options.mergeColumnWidth )  {
-			
+
 			// Try to make all the responses the same height
            	for ( i=0; i < responseItems.length; i++ ) {
                 responseItems[i].style.height = "";
             }
-            
+
             for ( i=0; i < columns.length; i++ ) {
                 columns[i].style.display = "block";
                 columns[i].style.width = '100%';
             }
-          
+
             for ( i=0; i < responseItems.length; i++ ) {
                 responseItems[i].style.display = "inline-block";
-                responseItems[i].style.width = (100/options.columns) + '%';
+
+                var isIE = /*@cc_on!@*/false || !!document.documentMode; //Check that if IE(6-11)
+                if (isIE) {
+                  responseItems[i].style.width = ((100/options.columns) - 1) + '% !important';
+                } else {
+                  responseItems[i].style.width = (100/options.columns) + '%';
+                }
             }
-			
+
             var style = responseItems[0].currentStyle || window.getComputedStyle(responseItems[0]),
             	widthDiff = (responseItems[0].offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight)) - responseItems[0].clientWidth,
             	newWidth = ((columns[0].offsetWidth - (widthDiff * options.columns))/options.columns) - 10;
             for ( i = 0; i < responseItems.length; i++ ) {
                 responseItems[i].style.width = newWidth+'px';
             }
-            
+
             var maxResponseHeight = [];
             for ( i = 0; i < responseItems.length; i++) {
                 maxResponseHeight.push(responseItems[i].offsetHeight);
@@ -227,7 +233,7 @@
                     size.height *= ratio;
                 }
 
-            } 
+            }
             images[i].width = size.width;
             images[i].height = size.height;
         }
@@ -262,10 +268,10 @@
             var rainbow2 = new Rainbow();
                 rainbow2.setSpectrum(processRgb(rangeArray[1]), processRgb(rangeArray[3]));
                 rainbow2.setNumberRange(0, maxNumber);
-            
+
             var nsItems = responseItems.slice(0, (options.numberNS > 0) ? 0-options.numberNS : responseItems.length);
             for ( i=0; i<nsItems.length; i++) {
-                if ( options.rangeGradientDirection === 'ltr' ) { 
+                if ( options.rangeGradientDirection === 'ltr' ) {
                     nsItems[i].style.backgroundColor = '#'+rainbow1.colourAt(i);
                     addClass( nsItems[i], 'active' );
                     removeClass( nsItems[i], 'active' );
@@ -297,10 +303,10 @@
             var input = document.querySelector(items[0].element),
                 currentValues = String(input.value).split(","),
                 currentValue;
-            
+
             for ( i=0; i<currentValues.length; i++ ) {
                 currentValue = currentValues[i];
-                for ( var j=0; j<responseItems.length; j++) {   
+                for ( var j=0; j<responseItems.length; j++) {
                     if ( !hasClass( responseItems[j], 'exclusive' ) ) addClass( responseItems[j], 'cb' );
                     responseItems[j].setAttribute('data-id', j);
                     var value = responseItems[j].getAttribute('data-value'),
@@ -313,16 +319,16 @@
         }
 
         // Attach all events
-        for ( i=0; i<responseItems.length; i++) {   
+        for ( i=0; i<responseItems.length; i++) {
             responseItems[i].onclick = function(e){
                 (!isMultiple) ? selectStatementSingle(this) : selectStatementMulitple(this);
             };
         }
-        
+
         function restoreRangeColour(index) {
-            
+
             if ( options.useRange && !hasClass(responseItems[index], 'ns') ) {
-                
+
                 var maxNumber = responseItems.length - options.numberNS;
                 var rangeArray = options.range.split(';');
                 var rainbow1 = new Rainbow();
@@ -332,22 +338,22 @@
                     rainbow2.setSpectrum(processRgb(rangeArray[1]), processRgb(rangeArray[3]));
                     rainbow2.setNumberRange(0, maxNumber);
 
-                if ( options.rangeGradientDirection === 'ltr' ) { 
+                if ( options.rangeGradientDirection === 'ltr' ) {
                     return 'progid:DXImageTransform.Microsoft.gradient( startColorstr=#'+rainbow1.colourAt(index)+', endColorstr=#'+rainbow2.colourAt(index)+',GradientType=1 )';
                 } else {
                     return 'progid:DXImageTransform.Microsoft.gradient( startColorstr=#'+rainbow1.colourAt(index)+', endColorstr=#'+rainbow2.colourAt(index)+',GradientType=0 )';
                 }
 
             } else {
-                return '';	
+                return '';
             }
         }
-        
+
         // For multi-coded question
         // Add the @valueToAdd in @currentValue (without duplicate)
         // and return the new value
         function addValue(currentValue, valueToAdd) {
-            
+
             if (currentValue === '' || currentValue === null) {
                 return valueToAdd;
             }
@@ -450,7 +456,7 @@
                 askia.triggerAnswer();
             }
         }
-        
+
         function scrollTo(element, to, duration) {
             if (duration <= 0) return;
             var difference = to - element.scrollTop;
@@ -462,11 +468,11 @@
                 scrollTo(element, to, duration - 10);
             }, 10);
         }
-        
+
         // if error scroll to top
-        if ( document.getElementById('error-summary') || document.getElementsByClassName('error') ) 
+        if ( document.getElementById('error-summary') || document.getElementsByClassName('error') )
             scrollTo(document.body, 0, 600);
-        
+
         // animate
         if ( options.animateResponses ){
 			for ( i=0; i<responseItems.length; i++ ) {
@@ -474,7 +480,7 @@
                 addClass(responseItems[i], 'animate');
             }
         }
-        
+
         function revealEl(el, delay) {
             setTimeout(function(){
                 el.style.top = "0px";
@@ -483,17 +489,17 @@
                 removeClass(el,'animate');
             }, 500);
         }
-        
-        // reveal control      
+
+        // reveal control
         container.style.visibility = "visible";
         if ( options.animateResponses ){
 			for ( i=0; i<responseItems.length; i++ ) {
                 revealEl( responseItems[i], 100+ (i*50) );
             }
         }
-        
+
         setTimeout(function(){ document.querySelector("#adc_" + this.instanceId).style.visibility = 'visible'; }, 300);
     }
-    
+
 	window.Statements = Statements;
 }());
