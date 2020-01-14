@@ -8,6 +8,9 @@ Dim responseSelectedFontColour =CurrentADC.PropValue("responseSelectedFontColour
 Dim textAlign =CurrentADC.PropValue("textAlign")
 Dim responseSelectedShadow =CurrentADC.PropValue("responseSelectedShadow")
 
+Dim headerColourPrimary =CurrentADC.PropValue("headerColourPrimary")
+Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
+
 Dim borderColour =CurrentADC.PropValue("borderColour")
 Dim borderThickness =CurrentADC.PropValue("borderThickness")
 Dim borderStyle =CurrentADC.PropValue("borderStyle")
@@ -49,8 +52,6 @@ Dim fontSize =CurrentADC.PropValue("fontSize")
 Dim responseHeight =CurrentADC.PropValue("responseHeight")
 Dim responseWidth =CurrentADC.PropValue("responseWidth")
 
-Dim useRange =CurrentADC.PropValue("useRange")
-
 IF imageAlign = "center" Then
 	imageAlign = "none"
 EndIF
@@ -65,14 +66,20 @@ EndIF
 Dim percentageWidth
 Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
 
-Dim animateResponses =CurrentADC.PropValue("animateResponses")
+Dim otherColourPrimary =CurrentADC.PropValue("otherColourPrimary")
+Dim otherFontColour =CurrentADC.PropValue("otherFontColour")
+Dim otherBorderColour =CurrentADC.PropValue("otherBorderColour")
+Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
+Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
+Dim otherShadow =CurrentADC.PropValue("otherShadow")
+Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 %}
 
 
 /* Reponses */
 #adc_{%= CurrentADC.InstanceId%} .responseItem 
 {   
-    
+	
 	/* Decoration */
 	{% IF CurrentADC.PropValue("borderThickness") = "none" Then %}
 		border: none;
@@ -91,18 +98,15 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
 	-moz-box-shadow: {%= responseShadow%};
 	box-shadow: {%= responseShadow%};
 	
-	height: {%= responseHeight%};
-	width: {%= responseWidth%};
-	
 	margin: {%= responseMargin%};
 	
-	z-index: 0;
-    
-    box-sizing: border-box;
+	min-height: {%= responseHeight%};
+	width: {%= responseWidth%};
 }
 
-#adc_{%= CurrentADC.InstanceId%} .responseItem:hover {
-
+#adc_{%= CurrentADC.InstanceId%} .responseItem:hover
+{
+	
 	/* Decoration */
 	{% IF showResponseHoverBorder = "1" Then %}
 		border: {%= responseHoverBorderThickness%} {%= responseHoverBorderStyle%} rgb({%= responseHoverBorderColour%});
@@ -129,8 +133,8 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
         box-shadow: {%= responseShadow%};
     }
 }
-
-#adc_{%= CurrentADC.InstanceId%} .response_text { 
+#adc_{%= CurrentADC.InstanceId%} .response_text 
+{ 
 	display:block;
 	font-size:{%= fontSize%};
 	text-align:{%= textAlign%};
@@ -139,7 +143,8 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
 	line-height:{%= responseTextLineHeight%};
 }
 
-#adc_{%= CurrentADC.InstanceId%} .responseItem:hover .response_text {
+#adc_{%= CurrentADC.InstanceId%} .responseItem:hover .response_text 
+{ 
 	{% IF showResponseHoverFontColour = "1" Then %}
 		color:rgb({%= responseHoverFontColour%});
 	{% EndIF %}
@@ -154,7 +159,6 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
 #adc_{%= CurrentADC.InstanceId%} .responseItem img {
 		
 	float: {%= imageAlign%};
-	max-width:100%;
 		
 }
 
@@ -178,10 +182,57 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
     color:rgb({%= responseSelectedFontColour%});
 }
 
+/* Headers */
+#adc_{%= CurrentADC.InstanceId%} .responseHeader
+{   
+	/* Decoration */
+	{% IF CurrentADC.PropValue("borderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
+	{% EndIF %}	
+	background-color: rgb({%= headerColourPrimary%});
+	
+	/* Effects */
+	-webkit-border-radius:	{%= borderRadius%}; 
+	-moz-border-radius:		{%= borderRadius%}; 
+	-khtml-border-radius:	{%= borderRadius%}; 
+	border-radius:			{%= borderRadius%};
+	
+	-webkit-box-shadow: {%= responseShadow%};
+	-moz-box-shadow: {%= responseShadow%};
+	box-shadow: {%= responseShadow%};
+	
+	height: {%= responseHeight%};
+	width: {%= responseWidth%};
+	
+	margin: {%= responseMargin%};
+	
+	z-index: 0;
+    
+    box-sizing: border-box;
+}
+
+#adc_{%= CurrentADC.InstanceId%} .responseHeader img {
+		
+	float: {%= imageAlign%};
+	max-width:100%;
+}
+
+#adc_{%= CurrentADC.InstanceId%} .header_text { 
+	display:block;
+	font-size:{%= fontSize%};
+	text-align:{%= textAlign%};
+    color:rgb({%= headerFontColour%});
+	padding:{%= responseTextPadding%};
+	line-height:{%= responseTextLineHeight%};
+}
+
+
 /* Non Scaled Reponses */
 #adc_{%= CurrentADC.InstanceId%} .ns 
 {   
-
+	
 	/* Decoration */
 	{% IF CurrentADC.PropValue("nsResponseBorderThickness") = "none" Then %}
 		border: none;
@@ -228,20 +279,41 @@ Dim animateResponses =CurrentADC.PropValue("animateResponses")
     color:rgb({%= nsResponseSelectedFontColour%});
 }
 
-.animate {
-    -webkit-transition: all .5s ease-in-out;
-     -moz-transition: all .5s ease-in-out;
-     -o-transition: all .5s ease-in-out;
-     transition: all .5s ease-in-out;
+.adc-statementsOther .otherText { 
+	
+	font-size:{%= fontSize%};
+	color: rgb({%= otherFontColour%});
+	
+	/* Decoration */
+	{% IF CurrentADC.PropValue("otherBorderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= otherBorderThickness%} {%= otherBorderStyle%} rgb({%= otherBorderColour%});
+	{% EndIF %}	
+	background-color: rgb({%= otherColourPrimary%});
+	
+	/* Effects */
+	-webkit-border-radius:	{%= otherBorderRadius%}; 
+	-moz-border-radius:		{%= otherBorderRadius%}; 
+	-khtml-border-radius:	{%= otherBorderRadius%}; 
+	border-radius:			{%= otherBorderRadius%};
+	
+	-webkit-box-shadow: {%= otherShadow%};
+	-moz-box-shadow: {%= otherShadow%};
+	box-shadow: {%= otherShadow%};
+	
 }
 
 /* Instead of attribute unselectable and onselectstart not allowed for div in HTML5 */
-
-#adc_{%= CurrentADC.InstanceId%} .responseItem {
+#adc_{%= CurrentADC.InstanceId%} .response_text , 
+#adc_{%= CurrentADC.InstanceId%} img  {
         user-select: none;
         -moz-user-select: none;
         -khtml-user-select: none;
         -webkit-user-select: none;
         -o-user-select: none;
-} 
+}
+
+
+
 

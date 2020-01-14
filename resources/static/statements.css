@@ -1,28 +1,43 @@
 @charset "utf-8";
 /* CSS Document */
 
-.adc-statements {
-	position:relative;	
-}
-
-.adc-statements .column {
+.adc-statementsOther .column {
 	position:relative;
 }
 
 /* Reponses */
-.adc-statements .responseItem 
+.adc-statementsOther .responseItem 
 {   
     /* Element */
 	display:block;
-    position: relative;
 	margin:0 0 5px 0;
     vertical-align:middle;
 	cursor:pointer;
-	left:0px;
-		
+	
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
+	
+	position:relative;
+    box-sizing: border-box;
+}
+
+.adc-statementsOther .response_text 
+{ 
+	display:block;
+	padding:10px;
+	
+	/* disable highlight text */
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+}
+.adc-statementsOther .responseItem img 
+{
+	display:inline-block; 
+	margin:5px 20px 5px 5px;
+	float:right;
 	
 	/* disable highlight text */
 	-moz-user-select: none; 
@@ -31,15 +46,52 @@
 	user-select:none;
 }
 
-.adc-statements .response_text 
-{ 
-	display:block;
-	padding:10px;
-	line-height:1.2;
-}
-.adc-statements .responseItem img 
+.adc-statementsOther .responseHeader img 
 {
 	display:inline-block; 
 	margin:5px 20px 5px 5px;
 	float:right;
+	
+	/* disable highlight text */
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+}
+
+
+.adc-statementsOther .responseItem.selected 
+{	
+}
+
+.adc-statementsOther .responseItem.selected .response_text 
+{
+	
+	/* disable highlight text */
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+}
+
+.adc-statementsOther .otherText { 
+	display:block;
+	margin:10px;
+	padding:5px;
+	
+	/* disable highlight text */
+	-moz-user-select: text !important;
+	-khtml-user-select: text !important;
+	-webkit-user-select: text !important;
+	-ms-user-select: text !important;
+	user-select: text !important;
+	
+	position:relative;
+	left:0px;
+}
+.animate {
+    -webkit-transition: all .5s ease-in-out;
+     -moz-transition: all .5s ease-in-out;
+     -o-transition: all .5s ease-in-out;
+     transition: all .5s ease-in-out;
 }

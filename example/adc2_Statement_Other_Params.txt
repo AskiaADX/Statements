@@ -69,6 +69,54 @@
 <td class="askiaadctd">Yes or No</td>
 </tr>
 <tr>
+<td class="askiaadccategory" colspan="3"><strong>Other Response</strong></td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Question ID</td>
+<td class="askiaadctd">String</td>
+<td class="askiaadctd">Q1 or Q2 etc. it's the id given in the code in control of the text box. So if you set id="Q3" in the code in control, here put Q3</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Response ID</td>
+<td class="askiaadctd">Number</td>
+<td class="askiaadctd">5 or 6 etc. it's the order of the other specify in the list in question mode</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Colour Primary</td>
+<td class="askiaadctd">Colour</td>
+<td class="askiaadctd">&nbsp;</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Colour Secondary</td>
+<td class="askiaadctd">Colour</td>
+<td class="askiaadctd">&nbsp;</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Font Colour</td>
+<td class="askiaadctd">Colour</td>
+<td class="askiaadctd">&nbsp;</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Border Colour</td>
+<td class="askiaadctd">Colour</td>
+<td class="askiaadctd">&nbsp;</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Border Thickness</td>
+<td class="askiaadctd">Combo box</td>
+<td class="askiaadctd">None or 1px or 2px etc.</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Border Style</td>
+<td class="askiaadctd">Combo box</td>
+<td class="askiaadctd">None or Solid or Dashed or Dotted or Double</td>
+</tr>
+<tr>
+<td class="askiaadctdname">Other Drop Shadow</td>
+<td class="askiaadctd">Combo box</td>
+<td class="askiaadctd">On or Off</td>
+</tr>
+<tr>
 <td class="askiaadccategory" colspan="3"><strong>Responses</strong></td>
 </tr>
 <tr>

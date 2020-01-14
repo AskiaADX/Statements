@@ -1,103 +1,141 @@
 {%
 Dim inputName = CurrentQuestion.InputName()
-Dim inputValue
+Dim inputID
+Dim inputValue = CurrentQuestion.InputValue()
 Dim caption
-Dim rawCaption
 Dim image
+Dim index
 Dim attrExclusive
 Dim total
 Dim maxPerColumn
 Dim remainder
 Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
+
+Dim attrSelected
 Dim i
 Dim j
 Dim k
 Dim flowDirection
-Dim splitCaption
-Dim arialabel
+Dim isHeader
 
+Dim	otherIDarray As NumberArray
+Dim arrOpenValues As StringArray
+Dim arrOpenNames As StringArray
+Dim otherID
+
+For i = 1 to ar.Count
+    If ar[i].isOpen = True Then
+        arrOpenValues.Push(ar[i].OpenQuestion.InputValue())
+        arrOpenNames.Push(ar[i].OpenQuestion.InputName())
+        otherIDarray.Push(ar[i].Index)
+    Endif
+Next i
+
+%}
+<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
+{%
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
 Dim flow = CurrentADC.PropValue("columnsFlow")
 Dim nbColumns = numberOfColumns
 
-Dim inputAnswers = ""
+Dim showHeader    =CurrentADC.PropValue("showHeaders") ="1"
+' Dim prefixHeader    =CurrentADC.PropValue("prefixHeader")
 
-For k = 1 To CurrentQuestion.Answers.Count 
-    inputAnswers = inputAnswers + CurrentQuestion.Answers[k].InputValue().ToString() + On(k < CurrentQuestion.Answers.Count,",","")
-Next k
-    
 IF numberOfColumns > 0 Then
 
 	columnCounter = numberOfColumns
-    
-    For i = 1 To CurrentQuestion.AvailableResponses.Count 
+
+    For i = 1 To ar.Count
         If (flow = "vertical") Then
             flowDirection = (((1 + (Int((i - 1) / nbColumns))) + ((Int(ar.Count / nbColumns)) * ((i - 1) mod nbColumns))) * (1 - (Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))))) + ((Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))) * i)
         Else
             flowDirection = i
         EndIf
-        inputValue  = CurrentQuestion.AvailableResponses[flowDirection].InputValue()
-        rawCaption     = CurrentQuestion.AvailableResponses[flowDirection].Caption
-        image		= CurrentQuestion.AvailableResponses.ResourceURL[flowDirection]
-        attrExclusive = On(CurrentQuestion.AvailableResponses[flowDirection].IsExclusive, " exclusive", "")
-   		splitCaption = rawCaption.Split("|")
-		caption = splitCaption[1]
-        if len(splitCaption[2]) > 0 Then
-        	arialabel = splitCaption[2]
-		else
-            arialabel = caption
-		EndIf
-        
+        inputValue  = ar[flowDirection].InputValue()
+        caption     = ar[flowDirection].Caption
+        image		= ar.ResourceURL[flowDirection]
+        index		= ar[flowDirection].index
+        attrExclusive = On(ar[flowDirection].IsExclusive, " exclusive", "")
+        isHeader  = ar[flowDirection].isHeader
+
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
-        
-        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}"  aria-label="{%= arialabel  %}" onmousedown='return false;'>
+
+        {% If isHeader = False or showHeader = True Then %}
+      		{% If isHeader = true Then %}
+  				    <div class="responseHeader"  onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+              {% Else %}
+              <div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+          {% EndIF %}
+
             {% IF image <> "" Then %}
-                <img src="{%= image %}" alt="{%:= caption %}"/>
+                <img src="{%= image %}" onmousedown='return false;'  alt="{%:= caption %}"/>
             {% EndIF %}
-            <span class="response_text">{%:= caption %}</span>
+            <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
             <div style="clear:both"></div>
+            {% For k = 1 To otherIDarray.Count
+            	otherID = otherIDarray[k].ToNumber()
+            	IF index = otherID Then %}
+                    <div style="overflow:hidden"><textarea aria-label="Other" class="otherText"  id="{%= ar[flowDirection].OpenQuestion.InputName() %}" name="{%= ar[flowDirection].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[flowDirection].OpenQuestion.inputValue() %}</textarea></div>
+                    <div style="clear:both"></div>
+                {% EndIF %}
+            {% Next %}
         </div>
-        
-        {%
+        {% EndIF %}
+
+         {%
         columnCounter = columnCounter - 1
-        
-        IF (columnCounter < 1) or (i = CurrentQuestion.AvailableResponses.Count)  Then
-        
+
+        IF (columnCounter < 1) or (i = ar.Count)  Then
+
             %}
             <div style="clear:both"></div>
             </div>
-            
+
         {% columnCounter = numberOfColumns
 		EndIF
-    
+
     Next
-    
+
 Else
-	
-    For j = 1 To CurrentQuestion.AvailableResponses.Count 
-        inputValue  = CurrentQuestion.AvailableResponses[j].InputValue()
-        rawCaption     = CurrentQuestion.AvailableResponses[j].Caption
-        image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
-        attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
-   		splitCaption = rawCaption.Split("|")
-		caption = splitCaption[1]
-		if len(splitCaption[2]) > 0 Then
-			arialabel = splitCaption[2]
-		else
-			arialabel = caption
-		EndIf
+
+    For j = 1 To ar.Count
+        inputValue  = ar[j].InputValue()
+        caption     = ar[j].Caption
+        image		= ar.ResourceURL[j]
+        index		= ar[j].index
+        attrExclusive = On(ar[j].IsExclusive, " exclusive", "")
+		isHeader = ar[j].isHeader
+
+		If isHeader = False or showHeader = True Then
+			If isHeader Then
     %}
-    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" aria-label="{%= arialabel %}" onmousedown="return false;">
-        {% IF image <> "" Then %}
-            <img src="{%= image %}" alt="{%:= caption %}" />
-        {% EndIF %}
-        <span class="response_text">{%:= caption %}</span>
-        <div style="clear:both"></div>
-    </div>
-    {% Next %}
+				<div class="responseHeader"  onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}">
+	{%
+			Else
+	%}
+    			<div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}">
+        		{% IF image <> "" Then %}
+            		<img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
+				{% EndIF %}
+     {%
+			EndIF
+	%}
+        	<span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
+        	<div style="clear:both"></div>
+        	{% For k = 1 To otherIDarray.Count
+            	otherID = otherIDarray[k].ToNumber()
+            	IF index = otherID Then %}
+                  <div style="overflow:hidden"><textarea aria-label="Other" class="otherText"  id="{%= ar[j].OpenQuestion.InputName() %}" name="{%= ar[j].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[j].OpenQuestion.inputValue() %}</textarea></div>
+
+                	<div style="clear:both"></div>
+				{% EndIF %}
+    		{% Next k %}
+    		</div>
+    {%
+		EndIf
+	Next j %}
     <div style="clear:both"></div>
 {% EndIF %}
-<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= inputAnswers %}" />

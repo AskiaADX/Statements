@@ -1,13 +1,32 @@
-DomReady.ready(function() {
-    
-    var statements = new Statements({
+/* standard.js */
+ DomReady.ready(function() {
+{%
+Dim i
+
+Dim strOtherRID = ""
+Dim strOtherQID = ""
+
+Dim ar = CurrentQuestion.AvailableResponses
+For i = 1 to ar.Count
+    If ar[i].isOpen = True Then
+        If strOtherRID <> "" Then
+          strOtherRID = strOtherRID + ","
+            strOtherQID = strOtherQID + ","
+        Endif
+        strOtherRID = strOtherRID + ar[i].Index
+        strOtherQID = strOtherQID + ar[i].OpenQuestion.InputName()
+    Endif
+Next i
+
+%}
+    var statementsOther = new StatementsOther({
         instanceId : '{%= CurrentADC.InstanceId%}',
         currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
 		width : 400,
 		imageAlign : '{%= CurrentADC.PropValue("imageAlign") %}',
 		imageWidth : 100,
 		imageHeight : 100,
-		isMultiple: {%= (CurrentQuestion.Type = "multiple") or (CurrentQuestion.Type = "multiple-loop") %},
+		isMultiple: {%= (CurrentQuestion.Type = "multiple") %},
 		controlWidth : '{%= CurrentADC.PropValue("controlWidth") %}',
 		columns: {%= CurrentADC.PropValue("columns") %},
 		maxWidth : '{%= CurrentADC.PropValue("maxWidth") %}',
@@ -24,18 +43,20 @@ DomReady.ready(function() {
 		showResponseHoverFontColour: {%= (CurrentADC.PropValue("showResponseHoverFontColour") = "1") %},
 		showResponseHoverBorder: {%= (CurrentADC.PropValue("showResponseHoverBorder") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
+        otherRID : '{%= strOtherRID %}',
+		otherQID : '{%= strOtherQID %}',
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
         mergeColumnWidth : '{%= CurrentADC.PropValue("mergeColumnWidth") %}',
+        responseHeight : '{%= CurrentADC.PropValue("responseHeight") %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}
 		items : [
-			{% IF (CurrentQuestion.Type = "single") or (CurrentQuestion.Type = "single-loop") Then %}
+			{% IF CurrentQuestion.Type = "single" Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
-			{% ElseIf (CurrentQuestion.Type = "multiple") or (CurrentQuestion.Type = "multiple-loop") Then %}
+			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
 			{% EndIF %}
 		]
     });
-    
 });

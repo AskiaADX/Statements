@@ -1,64 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<control  xmlns="http://www.askia.com/2.1.0/ADCSchema"
+<control  xmlns="http://www.askia.com/2.2.0/ADCSchema"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.askia.com/2.1.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.1.0/ADCSchema.xsd"
-          version="2.1.0"
-          askiaCompat="5.4.2">
+          xsi:schemaLocation="http://www.askia.com/2.2.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.2.0/ADCSchema.xsd"
+          version="2.2.0"
+          askiaCompat="5.5.2">
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>2.0.14</version>
+    <version>4.0.5</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
-        v1.0.4 - removed CSS3 Pie
-		v1.0.5 - enabled control to be used in loops
+        v1.0.5 - removed CSS3 Pie
+		v1.0.6 - enabled control to be used in loops
 			   - added margin around responses
 			   - set columns to 1 when width is less than 350px
 			   - make all items the same height when there is more than one column
 			   - fix ie7 hover bug causing elements to move when hovering
-		v1.0.6 - added range gradient direction variable
-		v1.0.7 - fixed column bug when using multiple instances on the same page
-		v1.0.8 - fixed weird IE offset bug
-		v1.0.9 - fixed ie7/8 retained selection bug
-		v1.0.10 - updated jquery to 1.11.1
+			   - fixed ie7 other text box resizing bug
+		v1.0.7 - added range gradient direction variable
+		v1.0.8 - fixed ie7/8 retained selection bug
+		v1.0.9 - allow for multiple other please specifies
+		v1.0.10 - other ID now references response id
+		v1.0.11 - updated jquery to 1.11.1
 			    - fixed image loading glitch
-		v1.0.11 - fixed response sizing problem when merging screens
-	    v1.0.11 - deleted columns to 1 when width is less than 350px
-		v1.0.12 - fixed standard-single.js =caption to :=caption
-		v1.0.13 - fixed unclosed tags
-		v1.0.14 - fixed alignment of the responses with column > 1
-		v2.0.0 - Theme implementation
+		v1.0.12 - fixed multiple other boxes not appearing problem
+		v1.0.13 - fixed response sizing problem when merging screens
+		v1.0.14 - fixed multiple other boxes appearing with exclusivity bug
+		v1.0.15 - fixed alignment of the responses if column > 1
+		v1.0.16 - fixed height param and textbox overflow
+		v1.0.17 - removed visibility:hidden for ControlContainer
+		v2.0.0 - Theme implementation,
 		v2.0.1 - PureJS version
-		v2.0.2 - Fixed max height of the responses
-		v2.0.4 - Forced single column when screen width less than 480px
+		v2.0.2 - Fixed Height of the responses
+		v2.0.4 - Forced single column when screen width < 480px
 		v2.0.5 - Fixed visibility of the control
 		v2.0.6 - Added Merge column width parameter
-		v2.0.7 - Fixed autoForward
-		v2.0.8 - Fixed autoForward
-		v2.0.9 - Fixed hover styling for small screen
-		v2.0.10 - Added Flow direction
-		v2.0.11 - Added alt attribute for img
-				- Modifications for HTML5 compatibility
-		v2.0.12 - Fixed closing div for multi column
-		v2.0.13 - Added compatibility with single-loop and multiple-loop
-    v2.0.14 - Fixed columns for IE]]></description>
+		v2.0.7 - Fixed AutoForward
+		v2.0.8 - Fixed AutoForward
+		v2.0.10 - Fixed visibility of the adc when used in loop with vertical sub form
+		v2.0.11 - Fixed hover styling for small screen
+		v2.0.12 - Fixed textarea visibility when unselected by exclusive response
+		v2.0.13 - Fixed height when nb colmuns > 1
+		v2.0.14 - Fixed auto forward
+		v2.0.15 - Added Flow direction
+		v2.0.16 - Fixed Other text in database when unselect other
+		v2.0.17 - Added alt attribute to img
+				   - Added aria-labels to textarea
+				   - Modifications for HTML5 compatibility
+		v2.0.18 - Fixed closing div
+		v2.0.19 - Fixed textbox visibility when single closed question and multiple others
+		v2.0.20 - Fixed textbox data when single closed question and multiple others
+		v2.0.21 - Fixed errors when single/multiple closed question without open ended.
+		v2.0.22 - Fixed propagation on click on several other text.
+		v2.0.23 - Fixed IE10 and lower
+		v2.0.24 - Added non clickable responses (headers)
+		v3.0.0 -Managed semi-open question with property types for D6 compatibility
+        v3.0.2 - fixed response class on multiple on several columns
+		v4.0.0 - Non clickable responses without prefixHeader
+    v4.0.1 - Semi-open questions
+    v4.0.2 - fix issue when columns > 0
+    v4.0.3 - active headers - issue fux
+    v4.0.4 - AvailableResponses & manageHeader = true
+    v4.0.5 - manageSemiOpen = true
+]]></description>
     <company>Askia</company>
-    <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
+    <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
     <site>http://www.askia.com</site>
     <helpURL>https://dev.askia.com</helpURL>
     <categories>
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" />
-      <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
+      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="false" requireLoopDepth="0" manageHeader="true" manageSemiOpen="true"/>
+      <constraint on="controls" responseblock="true" textbox="true" label="true" checkbox="false" listbox="false" radiobutton="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
   </info>
   <outputs defaultOutput="fallback">
-    <output id="fallback">
+    <output id="fallback" manageLoopDepth="0">
       <description><![CDATA[
-        Fallback when the browser doesn&acute;t support Javascript
+        Fallback when the browser doesnacute;t support Javascript
       ]]></description>
       <condition><![CDATA[
         Not(Browser.Support("javascript"))
@@ -67,7 +88,7 @@
       <content fileName="multiple.html" type="html" mode="dynamic" position="none" />
       <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
     </output>
-    <output id="standard">
+    <output id="standard" manageLoopDepth="0">
       <description><![CDATA[
         Output when the browser support Javascript
       ]]></description>
@@ -88,7 +109,7 @@
       </content>
       <content fileName="domready.js" type="javascript" mode="share" position="head" />
       <content fileName="rainbowvis.js" type="javascript" mode="share" position="head" />
-      <content fileName="statements.js" type="javascript" mode="static" position="head" />
+      <content fileName="statementsOther.js" type="javascript" mode="static" position="head" />
       <content fileName="standard.js" type="javascript" mode="dynamic" position="foot" />
       <content fileName="standard_single.js" type="javascript" mode="dynamic" position="none" />
       <content fileName="standard_multiple.js" type="javascript" mode="dynamic" position="none" />
@@ -181,7 +202,7 @@
           <option value="0" text="No" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="useList" name="Use a selection list" type="string" mode="dynamic" require="true" visible="true">
+      <property xsi:type="standardProperty" id="useList" name="Use a selection list" type="string" mode="dynamic" require="true" visible="false">
         <description><![CDATA[Use a select list to enumerate all available responses.
             This option works with closed and numeric questions.
             For numeric question, the range between bounds should be inferior than 20. It take in account the step option.]]></description>
@@ -192,6 +213,47 @@
         </options>
       </property>
     </category>
+    <category id="other" name="Other Response">
+      <property xsi:type="standardProperty" id="otherColourPrimary" name="Other Background Colour" type="color" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[Background colour of the other response]]></description>
+        <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="otherFontColour" name="Other Font Colour" type="color" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[Font colour of the other response]]></description>
+        <value><![CDATA[{%= Theme.BlackColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderColour" name="Other Border Colour" type="color" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[Border colour of the other response]]></description>
+        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderThickness" name="Other Border Thickness" type="string" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[The thickness of the border around the other response]]></description>
+        <value><![CDATA[{%= Theme.BorderWidth %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderRadius" name="Other Border Radius" type="string" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[The amount of curve on the other response corners]]></description>
+        <value><![CDATA[{%= Theme.BorderRadius %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderStyle" name="Other Border Style" type="string" mode="static" require="false" visible="false">
+        <description><![CDATA[The style of the border around the other response]]></description>
+        <value><![CDATA[solid]]></value>
+        <options>
+          <option value="none" text="None" />
+          <option value="solid" text="Solid" />
+          <option value="dashed" text="Dashed" />
+          <option value="dotted" text="Dotted" />
+          <option value="double" text="Double" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="otherShadow" name="Other Drop Shadow" type="string" mode="static" require="false" visible="false">
+        <description><![CDATA[The visibility of a dropshadow under the other response]]></description>
+        <value><![CDATA[none]]></value>
+        <options>
+          <option value="0px 2px 4px rgba(0,0,0,.2)" text="On" />
+          <option value="none" text="Off" />
+        </options>
+      </property>
+    </category>
     <category id="responses" name="Responses">
       <property xsi:type="standardProperty" id="responseTextPadding" name="Response Text Padding" type="string" mode="static" require="false" visible="false">
         <description><![CDATA[When set this will force the height of the reponses]]></description>
@@ -199,9 +261,9 @@
       </property>
       <property xsi:type="standardProperty" id="responseMargin" name="Response Margin" type="string" mode="static" require="false" visible="false">
         <description><![CDATA[This will set the margin around the responses]]></description>
-        <value><![CDATA[0.2em]]></value>
+        <value><![CDATA[0.3em]]></value>
       </property>
-      <property xsi:type="standardProperty" id="responseTextLineHeight" name="Response Text Line Height" type="string" mode="dynamic" require="true" visible="false">
+      <property xsi:type="standardProperty" id="responseTextLineHeight" name="Response Text Line Height" type="string" mode="dynamic" require="false" visible="false">
         <description><![CDATA[When set this will force the height of the reponses]]></description>
         <value><![CDATA[{%= Theme.LineHeight %}]]></value>
       </property>
@@ -358,13 +420,11 @@
           <option value="double" text="Double" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="responseSelectedShadow" name="Selected Response Drop Shadow" type="string" mode="static">
-        <description><![CDATA[
-          The visibility of a dropshadow under the selected responses
-        ]]></description>
+      <property xsi:type="standardProperty" id="responseSelectedShadow" name="Selected Response Drop Shadow" type="string" mode="static" require="false" visible="false">
+        <description><![CDATA[The visibility of a dropshadow under the selected responses]]></description>
         <value><![CDATA[none]]></value>
         <options>
-          <option value="#999 0px 2px 3px" text="On" />
+          <option value="0px 2px 4px rgba(0,0,0,.2)" text="On" />
           <option value="none" text="Off" />
         </options>
       </property>
@@ -471,6 +531,24 @@
           <option value="height" text="Force height" />
           <option value="both" text="Force both" />
         </options>
+      </property>
+    </category>
+    <category id="headers" name="Headers (non clickable responses)">
+      <property xsi:type="standardProperty" id="showHeaders" name="Show Headers" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Background colour of the header item]]></description>
+        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Header colour]]></description>
+        <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
     </category>
   </properties>

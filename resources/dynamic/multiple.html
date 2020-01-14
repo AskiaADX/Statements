@@ -16,7 +16,7 @@ If useList Then
             inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
             caption     = CurrentQuestion.AvailableResponses[i].Caption
         %}
-        <option value="{%= inputValue %}">{%:= caption %}</option>
+        <option value="{%= inputValue %}">{%= caption %}</option>
         {% Next %}
     </select>
 {% Else %}
@@ -35,7 +35,7 @@ If useList Then
             <td>
             	<input type="checkbox" name="{%= inputName %}" id="{%= inputId %}" {%:= attrChecked %} />
             </td><td>
-            	<label for="{%= inputId %}">{%:= caption %}</label><br />
+            	<label for="{%= inputId %}">{%= caption %}</label><br />
         	</td>
         </tr>
         {% Next %}
