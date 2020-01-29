@@ -134,6 +134,19 @@
             }
         });
 
+        var headerList = document.querySelectorAll('.responseHeader');
+        for (var i = 0; i < headerList.length; i++) {
+          headerList[i].onclick = function(){
+            var id = this.dataset.id;
+            // var num = id.substring(id.length - 1);
+            // if (this.dataset.index > 9) {
+            //   num = id.substring(id.length - 2);
+            // }
+            $("#headerGroup"+id).toggle('slow');
+            $("i", this).toggleClass("plus minus");
+          };
+        }
+
     }
 
     function init(options) {
@@ -624,7 +637,7 @@
                 }
             }, false);
         }
-        
+
         function scrollTo(element, to, duration) {
             if (duration <= 0) return;
             var difference = to - element.scrollTop;

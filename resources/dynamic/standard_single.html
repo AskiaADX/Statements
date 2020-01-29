@@ -57,23 +57,26 @@ IF numberOfColumns > 0 Then
 
      	{% If isHeader = False or showHeader = True Then %}
     		{% If isHeader = true Then %}
-				    <div class="responseHeader"  onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
+				    <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
             {% Else %}
         		<div class="response responseItem" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
         {% EndIF %}
-
-        {% IF image <> "" Then %}
-            <img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
-        {% EndIF %}
-        <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
-        <div style="clear:both"></div>
-        {% For k = 1 To otherIDarray.Count
-        	otherID = otherIDarray[k].ToNumber()
-        	IF index = otherID Then %}
-                <div style="overflow:hidden"><textarea aria-label="Other" class="otherText"  id="{%= ar[flowDirection].OpenQuestion.InputName() %}" name="{%= ar[flowDirection].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[flowDirection].OpenQuestion.inputValue() %}</textarea></div>
-                <div style="clear:both"></div>
-          {% EndIF %}
-        {% Next %}
+              {% IF image <> "" Then %}
+                  <img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
+              {% EndIF %}
+              <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
+              <div style="clear:both"></div>
+              {% For k = 1 To otherIDarray.Count
+              	otherID = otherIDarray[k].ToNumber()
+              	IF index = otherID Then %}
+                      <div style="overflow:hidden">
+                        <textarea aria-label="Other" class="otherText"  id="{%= ar[flowDirection].OpenQuestion.InputName() %}" name="{%= ar[flowDirection].OpenQuestion.InputName() %}" data-id="{%= k %}">
+                          {%= ar[flowDirection].OpenQuestion.inputValue() %}
+                        </textarea>
+                      </div>
+                      <div style="clear:both"></div>
+                {% EndIF %}
+              {% Next %}
           </div>
       {% EndIF %}
 
@@ -102,24 +105,51 @@ Else
 
      	{% If isHeader = False or showHeader = True Then %}
     		{% If isHeader = true Then%}
-        		<div class="responseHeader"  onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}">
-            {% Else %}
-    	    	<div class="response responseItem" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
-            {% EndIF %}
+    		  <div id="headerResponse{%= j %}" class="responseHeader" data-value="{%= inputValue %}" data-id="{%= j %}"data-index="{%= index %}"><i class="minus"></i>{%:= caption %}</div>
+          <div id="headerGroup{%= j %}" class="headerGroupWrap">
+            {%
+            Dim m
+          	Dim chr
+          	chr = ar[j].Children
 
-                    {% IF image <> "" Then %}
-                        <img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
-                    {% EndIF %}
-                    <span class="response_text"  onmousedown='return false;'>{%:= caption %}</span>
+          	For m = 1 To chr.Count
+            %}
+            <div class="response responseItem" data-value="{%= chr[m].InputValue() %}" data-id="{%= m %}" data-index="{%= chr[m].index %}">
+              {% IF chr.ResourceURL[m] <> "" Then %}
+                  <img src="{%= chr.ResourceURL[m] %}" onmousedown='return false;' alt="{%:= chr[m].Caption %}"/>
+              {% EndIF %}
+              <span class="response_text" onmousedown='return false;'>{%:= chr[m].Caption %}</span>
+              <div style="clear:both"></div>
+                {% For k = 1 To otherIDarray.Count
+                	otherID = otherIDarray[k].ToNumber()
+              	   IF chr[m].index = otherID Then %}
+                      <div style="overflow:hidden">
+                        <textarea aria-label="Other" class="otherText"  id="{%= chr[m].OpenQuestion.InputName() %}" name="{%= chr[m].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= chr[m].OpenQuestion.inputValue() %}</textarea>
+                      </div>
+                      <div style="clear:both"></div>
+                  {% EndIF %}
+                {% Next k %}
+   		      </div>
+            {% Next m %}
+          </div>
+        {% ElseIf isHeader = false AND ar[j].Parent.isHeader <> true Then %}
+	    	  <div class="response responseItem nhr" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
+            {% IF image <> "" Then %}
+                <img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
+            {% EndIF %}
+            <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
+            <div style="clear:both"></div>
+              {% For k = 1 To otherIDarray.Count
+              	otherID = otherIDarray[k].ToNumber()
+            	   IF index = otherID Then %}
+                    <div style="overflow:hidden">
+                      <textarea aria-label="Other" class="otherText"  id="{%= ar[j].OpenQuestion.InputName() %}" name="{%= ar[j].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[j].OpenQuestion.inputValue() %}</textarea>
+                    </div>
                     <div style="clear:both"></div>
-                      {% For k = 1 To otherIDarray.Count
-                      	otherID = otherIDarray[k].ToNumber()
-                    	   IF index = otherID Then %}
-                            <div style="overflow:hidden"><textarea aria-label="Other" class="otherText"  id="{%= ar[j].OpenQuestion.InputName() %}" name="{%= ar[j].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[j].OpenQuestion.inputValue() %}</textarea></div>
-                            <div style="clear:both"></div>
-                        {% EndIF %}
-                      {% Next %}
- 		    </div>
+                {% EndIF %}
+              {% Next %}
+ 		      </div>
+        {% EndIF %}
     {% EndIF %}
     {% Next %}
     <div style="clear:both"></div>

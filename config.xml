@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>4.0.5</version>
+    <version>4.0.6</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.5 - removed CSS3 Pie
@@ -62,6 +62,7 @@
     v4.0.3 - active headers - issue fux
     v4.0.4 - AvailableResponses & manageHeader = true
     v4.0.5 - manageSemiOpen = true
+    v4.0.6 - Response groups
 ]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -546,9 +547,21 @@
         <description><![CDATA[Background colour of the header item]]></description>
         <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
       </property>
+      <property xsi:type="standardProperty" id="headerHoverColourPrimary" name="Header Hover Background Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Hover background colour of the header item]]></description>
+        <value><![CDATA[{%= Theme.NeutralColor %}]]></value>
+      </property>
       <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
         <description><![CDATA[Header colour]]></description>
         <value><![CDATA[{%= Theme.BlackColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerGroupPadding" name="Header group padding" type="string" mode="dynamic" visible="true">
+        <description><![CDATA[Header group box padding]]></description>
+        <value><![CDATA[10px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerGroupBorderColor" name="Header Group Border Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Border colour of the header group box]]></description>
+        <value><![CDATA[{%= Theme.NeutralColor %}]]></value>
       </property>
     </category>
   </properties>
