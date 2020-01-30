@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>4.0.7</version>
+    <version>4.0.8</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.5 - removed CSS3 Pie
@@ -64,6 +64,7 @@
     v4.0.5 - manageSemiOpen = true
     v4.0.6 - Response groups
     v4.0.7 - expandableHeaders = Yes/No
+    v4.0.8 - Accordion initial state = expanded/collapsed
 ]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -550,6 +551,14 @@
         <options>
           <option value="1" text="Yes" />
           <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="accordionInitialState" name="Accordion Initial State" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[expanded]]></value>
+        <options>
+          <option value="expanded" text="Expanded" />
+          <option value="collapsed" text="Collapsed" />
         </options>
       </property>
       <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
