@@ -249,7 +249,11 @@
           }
           headerList[i].onclick = function(){
             var id = this.dataset.id;
-            $("#headerGroup"+id).toggle('slow');
+            if (animateResponses) {
+              $("#headerGroup"+id).toggle('slow');
+            } else {
+              $("#headerGroup"+id).toggle();              
+            }
             $("i", this).toggleClass("plus minus");
           };
         }
