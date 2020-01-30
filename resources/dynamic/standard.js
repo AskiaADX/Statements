@@ -45,6 +45,7 @@ Next i
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
         otherRID : '{%= strOtherRID %}',
 		otherQID : '{%= strOtherQID %}',
+    expandableHeaders : {%= (CurrentADC.PropValue("expandableHeaders") = "1") %},
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
         mergeColumnWidth : '{%= CurrentADC.PropValue("mergeColumnWidth") %}',
         responseHeight : '{%= CurrentADC.PropValue("responseHeight") %}',

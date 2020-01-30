@@ -32,6 +32,7 @@ Next i
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
 Dim flow = CurrentADC.PropValue("columnsFlow")
 Dim showHeader    =CurrentADC.PropValue("showHeaders") ="1"
+Dim expandableHeaders = CurrentADC.PropValue("expandableHeaders") ="1"
 
 Dim nbColumns = numberOfColumns
 
@@ -105,7 +106,11 @@ Else
 
      	{% If isHeader = False or showHeader = True Then %}
     		{% If isHeader = true Then%}
-    		  <div id="headerResponse{%= j %}" class="responseHeader" data-value="{%= inputValue %}" data-id="{%= j %}"data-index="{%= index %}"><i class="minus"></i>{%:= caption %}</div>
+    		  <div id="headerResponse{%= j %}" class="responseHeader" data-value="{%= inputValue %}" data-id="{%= j %}"data-index="{%= index %}">
+            {% If expandableHeaders = True Then %}
+            <i class="minus"></i>
+            {% EndIf %}
+            {%:= caption %}</div>
           <div id="headerGroup{%= j %}" class="headerGroupWrap">
             {%
             Dim m

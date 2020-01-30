@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>4.0.6</version>
+    <version>4.0.7</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.5 - removed CSS3 Pie
@@ -59,10 +59,11 @@
 		v4.0.0 - Non clickable responses without prefixHeader
     v4.0.1 - Semi-open questions
     v4.0.2 - fix issue when columns > 0
-    v4.0.3 - active headers - issue fux
+    v4.0.3 - active headers - issue fix
     v4.0.4 - AvailableResponses & manageHeader = true
     v4.0.5 - manageSemiOpen = true
     v4.0.6 - Response groups
+    v4.0.7 - expandableHeaders = Yes/No
 ]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -543,6 +544,14 @@
           <option value="0" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="expandableHeaders" name="Expandable Headers" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
       <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
         <description><![CDATA[Background colour of the header item]]></description>
         <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
@@ -555,6 +564,7 @@
         <description><![CDATA[Header colour]]></description>
         <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
+
       <property xsi:type="standardProperty" id="headerGroupPadding" name="Header group padding" type="string" mode="dynamic" visible="true">
         <description><![CDATA[Header group box padding]]></description>
         <value><![CDATA[10px]]></value>
