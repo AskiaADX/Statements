@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>4.0.10</version>
+    <version>4.0.11</version>
     <date>2013-07-26</date>
     <description><![CDATA[Describe your ADC here
         v1.0.5 - removed CSS3 Pie
@@ -67,6 +67,7 @@
     v4.0.8 - Accordion initial state = expanded/collapsed
     v4.0.9 - animate toggle when animateResponses = yes
     v4.0.10 - Response groups - multiple
+    v4.0.11 - Fixed an issue for exclusive responses
 ]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>

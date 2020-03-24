@@ -252,7 +252,7 @@
             if (animateResponses) {
               $("#headerGroup"+id).toggle('slow');
             } else {
-              $("#headerGroup"+id).toggle();              
+              $("#headerGroup"+id).toggle();
             }
             $("i", this).toggleClass("plus minus");
           };
@@ -531,7 +531,7 @@
         function selectStatementMultiple(target) {
             var value = target.getAttribute('data-value'),
                  input = document.querySelector(items[target.getAttribute('data-id')].element),
-                 isExclusive = Boolean(items[target.getAttribute('data-id')].isExclusive),
+                 isExclusive = Boolean(items[target.getAttribute('data-index') - 1].isExclusive),
                  currentValue = input.value;
 
             if (hasClass(target, 'selected')) {
@@ -586,7 +586,7 @@
                     currentValue = value;
                     if ( otherRIDarray.indexOf(target.getAttribute('data-index')) === -1 ) {
 
-						var targetOthers = target.parentNode.querySelectorAll('.otherText');
+						            var targetOthers = target.parentNode.querySelectorAll('.otherText');
                         for (j1 = 0; j1 < targetOthers.length; ++j1) {
                             targetOthers[j1].value = '';
                         }
@@ -597,7 +597,7 @@
                             targetOthers[j2].style.display = 'none';
                         }
 
-					} else {
+					          } else {
 
                         var targetOthers = target.parentNode.querySelectorAll('.otherText');
                         for (j1 = 0; j1 < targetOthers.length; ++j1) {
