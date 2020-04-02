@@ -238,7 +238,7 @@
       var expandableHeaders = options.expandableHeaders
       var accordionInitialState = options.accordionInitialState
       if(expandableHeaders){
-        var headerList = document.querySelectorAll('.responseHeader');
+        var headerList = document.querySelectorAll('#adc_' + this.instanceId + ' .responseHeader');
         for (var i = 0; i < headerList.length; i++) {
           {
             if (accordionInitialState == 'collapsed') {
