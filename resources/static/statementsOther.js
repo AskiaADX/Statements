@@ -531,7 +531,7 @@
         function selectStatementMultiple(target) {
             var value = target.getAttribute('data-value'),
                  input = document.querySelector(items[target.getAttribute('data-id')].element),
-                 isExclusive = Boolean(items[target.getAttribute('data-index') - 1].isExclusive),
+                 isExclusive = target.classList.contains('exclusive') ? true : false,
                  currentValue = input.value;
 
             if (hasClass(target, 'selected')) {
