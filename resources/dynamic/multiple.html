@@ -3,18 +3,19 @@ Dim useList   = (CurrentADC.PropValue("useList") = "1") ' Convert to boolean
 Dim inputName
 Dim inputValue
 Dim caption
+Dim ar = CurrentQuestion.AvailableResponses
 
 Dim i
-If useList Then
+If (useList) Then
  
     inputName = CurrentQuestion.InputName("list") %}
     <select name="{%= inputName %}" multiple="multiple">
         {% 
         Dim attrSelected
-        For i = 1 To CurrentQuestion.AvailableResponses.Count 
-            attrSelected = On(CurrentQuestion.AvailableResponses[i].IsSelected, "selected=\"selected\"", "")
-            inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
-            caption     = CurrentQuestion.AvailableResponses[i].Caption
+        For i = 1 To ar.Count 
+            attrSelected = On(ar[i].IsSelected, "selected=\"selected\"", "")
+            inputValue  = ar[i].InputValue()
+            caption     = ar[i].Caption
         %}
         <option value="{%= inputValue %}">{%= caption %}</option>
         {% Next %}
@@ -24,12 +25,12 @@ If useList Then
         {% 
         Dim inputId
         Dim attrChecked
-        For i = 1 To CurrentQuestion.AvailableResponses.Count
-            inputName   = CurrentQuestion.AvailableResponses[i].InputName()
+        For i = 1 To ar.Count
+            inputName   = ar[i].InputName()
             inputId     = inputName.Replace(" ", "_")
-            inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
-            attrChecked = On(CurrentQuestion.AvailableResponses[i].IsSelected, "checked=\"checked\"", "")
-            caption     = CurrentQuestion.AvailableResponses[i].Caption
+            inputValue  = ar[i].InputValue()
+            attrChecked = On(ar[i].IsSelected, "checked=\"checked\"", "")
+            caption     = ar[i].Caption
         %}
         <tr>
             <td>
