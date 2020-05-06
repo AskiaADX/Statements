@@ -58,7 +58,7 @@ IF (numberOfColumns > 0) Then
         {% EndIf %}
 
      	{% If ((isHeader = False) or (showHeader = True)) Then %}
-    		{% If (isHeader = tru) Then %}
+    		{% If (isHeader = true) Then %}
 				    <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
             {% Else %}
         		<div class="response responseItem" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}">
