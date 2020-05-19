@@ -17,6 +17,7 @@ Dim symbolPosition = "right"
 IF textAlign = "right" Then
 		symbolPosition = "left"
 EndIF
+Dim isExpandable = CurrentADC.PropValue("expandableHeaders") = "1"
 
 Dim borderColour =CurrentADC.PropValue("borderColour")
 Dim borderThickness =CurrentADC.PropValue("borderThickness")
@@ -80,6 +81,7 @@ Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
 Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
 Dim otherShadow =CurrentADC.PropValue("otherShadow")
 Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
+
 %}
 
 
@@ -225,7 +227,9 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
     color:rgb({%= headerFontColour%});
 	padding:{%= responseTextPadding%};
 	line-height:{%= responseTextLineHeight%};
+	{% IF (isExpandable) Then %}
 	cursor: pointer;
+	{% EndIF %}
 }
 
 #adc_{%= CurrentADC.InstanceId%} .responseHeader img {
@@ -238,9 +242,13 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 	/* border-radius: 0.1875em; */
 	padding: {%= headerGroupPadding %}
 }
-#adc_{%= CurrentADC.InstanceId%} .responseHeader:hover {
-	background-color: rgb({%= headerHoverColourPrimary %}) !important;
-}
+
+{% IF (isExpandable) Then %}
+	#adc_{%= CurrentADC.InstanceId%} .responseHeader:hover {
+		background-color: rgb({%= headerHoverColourPrimary %}) !important;
+	}
+{% EndIF %}
+
 .plus::after {
 	content: '\002B';
   color: rgb({%= headerFontColour %});
