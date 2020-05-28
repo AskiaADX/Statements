@@ -65,3 +65,6 @@ Version
             - jquery.min.js added in resources.static,
             - use CurrentADC.InstanceId
 		v4.0.13 - a bug fix
+        v4.0.14 - Some optimisation
+        v4.0.15 - Fixed missing e at True
+				v4.0.16 - Remove header:hover when non expandable

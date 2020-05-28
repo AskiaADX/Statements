@@ -4,18 +4,19 @@ Dim inputName = CurrentQuestion.InputName()
 Dim inputValue
 Dim caption
 Dim resource
+Dim ar = CurrentQuestion.AvailableResponses
 
 Dim i
 
-If useList Then %}
+If (useList) Then %}
     <select name="{%= inputName %}">
         <option value=""></option>
     {% 
     Dim attrSelected
-    For i = 1 To CurrentQuestion.AvailableResponses.Count 
-        attrSelected = On(CurrentQuestion.AvailableResponses[i].IsSelected, "selected=\"selected\"", "")
-        inputValue   = CurrentQuestion.AvailableResponses[i].InputValue()
-        caption      = CurrentQuestion.AvailableResponses[i].Caption
+    For i = 1 To ar.Count 
+        attrSelected = On(ar[i].IsSelected, "selected=\"selected\"", "")
+        inputValue   = ar[i].InputValue()
+        caption      = ar[i].Caption
         %}
         <option value="{%= inputValue %}" {%:= attrSelected %}>{%= caption %}</option>
     {% Next %}
@@ -26,12 +27,12 @@ If useList Then %}
         {% 
         Dim inputId
         Dim attrChecked
-        For i = 1 To CurrentQuestion.AvailableResponses.Count 
+        For i = 1 To ar.Count 
             inputId     = inputName + "_" + i
-            attrChecked = On(CurrentQuestion.AvailableResponses[i].IsSelected, "checked=\"checked\"", "")
-            inputValue  = CurrentQuestion.AvailableResponses[i].InputValue()
-            caption     = CurrentQuestion.AvailableResponses[i].Caption
-            resource	= CurrentQuestion.AvailableResponses.ResourceURL[i]
+            attrChecked = On(ar[i].IsSelected, "checked=\"checked\"", "")
+            inputValue  = ar[i].InputValue()
+            caption     = ar[i].Caption
+            resource	= ar.ResourceURL[i]
         %}
         <tr>
             <td>
