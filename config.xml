@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<control  xmlns="http://www.askia.com/2.2.0/ADCSchema"
+<control  xmlns="http://www.askia.com/2.3.0/ADCSchema"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.askia.com/2.2.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.2.0/ADCSchema.xsd"
-          version="2.2.0"
-          askiaCompat="5.5.2">
+          xsi:schemaLocation="http://www.askia.com/2.3.0/ADCSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.3.0/ADCSchema.xsd"
+          version="2.3.0"
+          askiaCompat="5.6.0">
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>4.0.16</version>
-    <date>2020-05-19</date>
+    <version>4.1.0</version>
+    <date>2020-05-28</date>
     <description><![CDATA[Describe your ADC here]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -18,7 +18,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="false" requireLoopDepth="0" manageHeader="true" manageSemiOpen="true"/>
+      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="false" requireLoopDepth="0" manageHeader="true" manageSemiOpen="true" />
       <constraint on="controls" responseblock="true" textbox="true" label="true" checkbox="false" listbox="false" radiobutton="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
@@ -518,7 +518,6 @@
         <description><![CDATA[Header colour]]></description>
         <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
-
       <property xsi:type="standardProperty" id="headerGroupPadding" name="Header group padding" type="string" mode="dynamic" visible="true">
         <description><![CDATA[Header group box padding]]></description>
         <value><![CDATA[10px]]></value>
