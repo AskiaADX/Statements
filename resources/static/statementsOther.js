@@ -149,6 +149,7 @@
         (options.currentQuestion = options.currentQuestion || '');
         (options.mergeColumnWidth = parseInt(options.mergeColumnWidth, 10) || 480);
         (options.responseHeight = options.responseHeight || '');
+        (options.deselectionEnabled = Boolean(options.deselectionEnabled));
 
         this.instanceId = options.instanceId || 1;
         polyfillGetElementsByClassName();
@@ -163,6 +164,7 @@
             nextBtn,
             items = options.items,
         	isMultiple = options.isMultiple,
+          deselectionEnabled = options.deselectionEnabled,
             animateResponses = Boolean(options.animateResponses);
 
         for(var i = 0; i < inputs.length; i++) {
@@ -485,9 +487,62 @@
         function selectStatementSingle(target) {
             var input = items[0].element,
                 value = target.getAttribute('data-value');
+            // var deselectionEnabled = true;
 
-            var selectedElements = [].slice.call(container.getElementsByClassName('selected'));
-            for ( i=0; i<selectedElements.length; i++) {
+            if (deselectionEnabled) {
+
+              if (hasClass(target, 'selected')) {
+
+                  // Un-select
+                  target.style.filter = restoreRangeColour( target.getAttribute('data-id') );
+                  removeClass(target, 'selected');
+                  input.value = '';
+
+                  if (target.querySelector('.otherText') !== null) {
+                  	target.querySelector('.otherText').style.display = 'none';
+                      target.querySelector('.otherText').value = '';
+                      target.querySelector('.otherText').defaultValue = '';
+                  }
+
+              } else {
+                var selectedElements = [].slice.call(container.getElementsByClassName('selected'));
+                for ( i=0; i<selectedElements.length; i++) {
+                  selectedElements[i].style.filter = restoreRangeColour( selectedElements[i].getAttribute('data-id') );
+                  removeClass(selectedElements[i], 'selected');
+                  if (selectedElements[i].querySelector('.otherText') !== null) {
+                    selectedElements[i].querySelector('.otherText').style.display = 'none';
+                      selectedElements[i].querySelector('.otherText').value = '';
+                      selectedElements[i].querySelector('.otherText').defaultValue = '';
+                  }
+                }
+
+                addClass(target, 'selected');
+                input.value = value;
+
+                if (otherRIDarray.indexOf(target.getAttribute('data-index')) === -1) {
+                    if (container.parentNode.querySelector('.otherText')) {
+                        container.parentNode.querySelector('.otherText').value = '';
+                    }
+                    for (i = 0; i < otherQIDarray.length; ++i) {
+                        if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
+                    }
+                    if (container.parentNode.querySelector('.otherText')) {
+                      container.parentNode.querySelector('.otherText').style.display = 'none';
+                    }
+                } else {
+                    for (i = 0; i < otherQIDarray.length; ++i) {
+                        if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
+                    }
+                    target.querySelector('.otherText').style.display = '';
+                    target.querySelector('.otherText').focus();
+                }
+
+              }
+
+            } else {
+
+              var selectedElements = [].slice.call(container.getElementsByClassName('selected'));
+              for ( i=0; i<selectedElements.length; i++) {
                 selectedElements[i].style.filter = restoreRangeColour( selectedElements[i].getAttribute('data-id') );
                 removeClass(selectedElements[i], 'selected');
                 if (selectedElements[i].querySelector('.otherText') !== null) {
@@ -495,28 +550,31 @@
                     selectedElements[i].querySelector('.otherText').value = '';
                     selectedElements[i].querySelector('.otherText').defaultValue = '';
                 }
+              }
+              addClass(target, 'selected');
+              input.value = value;
+
+              if (otherRIDarray.indexOf(target.getAttribute('data-index')) === -1) {
+                  if (container.parentNode.querySelector('.otherText')) {
+                      container.parentNode.querySelector('.otherText').value = '';
+                  }
+                  for (i = 0; i < otherQIDarray.length; ++i) {
+                      if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
+                  }
+                  if (container.parentNode.querySelector('.otherText')) {
+                    container.parentNode.querySelector('.otherText').style.display = 'none';
+                  }
+              } else {
+                  for (i = 0; i < otherQIDarray.length; ++i) {
+                      if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
+                  }
+                  target.querySelector('.otherText').style.display = '';
+                  target.querySelector('.otherText').focus();
+              }
+
             }
 
-            addClass(target, 'selected');
-            input.value = value;
 
-            if (otherRIDarray.indexOf(target.getAttribute('data-index')) === -1) {
-							if (container.parentNode.querySelector('.otherText')) {
-								container.parentNode.querySelector('.otherText').value = '';
-							}
-                for (i = 0; i < otherQIDarray.length; ++i) {
-                    if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
-                }
-								if (container.parentNode.querySelector('.otherText')) {
-									container.parentNode.querySelector('.otherText').style.display = 'none';
-								}
-            } else {
-                for (i = 0; i < otherQIDarray.length; ++i) {
-                    if ( otherQIDarray[i] != '' ) document.getElementById(otherQIDarray[i]).value = '';
-                }
-				target.querySelector('.otherText').style.display = '';
-                target.querySelector('.otherText').focus();
-			}
             if (window.askia && window.arrLiveRoutingShortcut && window.arrLiveRoutingShortcut.length > 0 && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
@@ -545,7 +603,7 @@
                     target.querySelector('.otherText').style.display = 'none';
                     target.querySelector('.otherText').value = '';
                     if ( otherID !== -1 ) document.getElementById(otherQIDarray[otherID]).value = '';
-				}
+				        }
 
             } else {
                 // Select
