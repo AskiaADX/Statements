@@ -2,6 +2,7 @@
 Dim inputName = CurrentQuestion.InputName()
 Dim inputValue
 Dim caption
+Dim rawCaption
 Dim image
 Dim attrExclusive
 Dim total
@@ -13,6 +14,8 @@ Dim i
 Dim j
 Dim k
 Dim flowDirection
+Dim splitCaption
+Dim arialabel
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
 Dim flow = CurrentADC.PropValue("columnsFlow")
@@ -20,60 +23,76 @@ Dim nbColumns = numberOfColumns
 
 Dim inputAnswers = ""
 
-For k = 1 To CurrentQuestion.Answers.Count 
+For k = 1 To CurrentQuestion.Answers.Count
     inputAnswers = inputAnswers + CurrentQuestion.Answers[k].InputValue().ToString() + On(k < CurrentQuestion.Answers.Count,",","")
 Next k
-    
+
 IF numberOfColumns > 0 Then
 
 	columnCounter = numberOfColumns
-    
-    For i = 1 To CurrentQuestion.AvailableResponses.Count 
+
+    For i = 1 To CurrentQuestion.AvailableResponses.Count
         If (flow = "vertical") Then
             flowDirection = (((1 + (Int((i - 1) / nbColumns))) + ((Int(ar.Count / nbColumns)) * ((i - 1) mod nbColumns))) * (1 - (Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))))) + ((Int(i / ((ar.Count + 1) - (ar.Count mod nbColumns)))) * i)
         Else
             flowDirection = i
         EndIf
         inputValue  = CurrentQuestion.AvailableResponses[flowDirection].InputValue()
-        caption     = CurrentQuestion.AvailableResponses[flowDirection].Caption
+        rawCaption  = CurrentQuestion.AvailableResponses[flowDirection].Caption
         image		= CurrentQuestion.AvailableResponses.ResourceURL[flowDirection]
         attrExclusive = On(CurrentQuestion.AvailableResponses[flowDirection].IsExclusive, " exclusive", "")
-        
+
+        splitCaption = rawCaption.Split("|")
+    		caption = splitCaption[1]
+        if len(splitCaption[2]) > 0 Then
+            	arialabel = splitCaption[2]
+    		else
+              arialabel = caption
+    		EndIf
+
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
-        
-        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" onmousedown='return false;'>
+
+        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" aria-label="{%= arialabel  %}" onmousedown='return false;'>
             {% IF image <> "" Then %}
                 <img src="{%= image %}" alt="{%:= caption %}"/>
             {% EndIF %}
             <span class="response_text">{%:= caption %}</span>
             <div style="clear:both"></div>
         </div>
-        
+
         {%
         columnCounter = columnCounter - 1
-        
+
         IF (columnCounter < 1) or (i = CurrentQuestion.AvailableResponses.Count)  Then
-        
+
             %}
             <div style="clear:both"></div>
             </div>
-            
+
         {% columnCounter = numberOfColumns
 		EndIF
-    
+
     Next
-    
+
 Else
-	
-    For j = 1 To CurrentQuestion.AvailableResponses.Count 
+
+    For j = 1 To CurrentQuestion.AvailableResponses.Count
         inputValue  = CurrentQuestion.AvailableResponses[j].InputValue()
-        caption     = CurrentQuestion.AvailableResponses[j].Caption
+        rawCaption  = CurrentQuestion.AvailableResponses[j].Caption
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
         attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
+
+        splitCaption = rawCaption.Split("|")
+    		caption = splitCaption[1]
+    		if len(splitCaption[2]) > 0 Then
+    			arialabel = splitCaption[2]
+    		else
+    			arialabel = caption
+    		EndIf
     %}
-    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" onmousedown="return false;">
+    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" aria-label="{%= arialabel %}" onmousedown="return false;">
         {% IF image <> "" Then %}
             <img src="{%= image %}" alt="{%:= caption %}" />
         {% EndIF %}

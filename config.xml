@@ -7,8 +7,8 @@
   <info>
     <name>Statements</name>
     <guid>1175ae20-499c-4a62-8dc3-d3f495c29530</guid>
-    <version>3.0.1</version>
-    <date>2013-07-26</date>
+    <version>3.0.2</version>
+    <date>2020-09-15</date>
     <description><![CDATA[Describe your ADC here
         v1.0.4 - removed CSS3 Pie
 		v1.0.5 - enabled control to be used in loops
@@ -42,7 +42,8 @@
 		v2.0.12 - Fixed closing div for multi column
 		v2.0.13 - Added compatibility with single-loop and multiple-loop
 		v3.0.0 - AvailableAnswers
-    v3.0.1 - Fixed columns for IE]]></description>
+    v3.0.1 - Fixed columns for IE
+    v3.0.2 - aria-label fixed]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>      Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
