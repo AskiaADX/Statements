@@ -73,3 +73,4 @@ Version
 			v4.0.16 - Remove header:hover when non expandable
 		v4.1.0 - Enable deselection of statement for single-coded questions
 		v4.1.1 - Changed GUID cause duplicate with StatementOther
+		v4.1.2 - Merged the master branch cause some functionalities was missing in develop
