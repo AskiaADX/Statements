@@ -137,8 +137,8 @@
     }
 
     function init(options) {
-
-        this.options = options;
+		this.instanceId = options.instanceId || 1;
+		this.options = options;
 		(options.responseWidth = options.responseWidth || "auto");
 		(options.responseHeight = options.responseHeight || "auto");
 		(options.imageAlign = options.imageAlign || '');
@@ -204,7 +204,13 @@
 
             for ( i=0; i < responseItems.length; i++ ) {
                 responseItems[i].style.display = "inline-block";
-                responseItems[i].style.width = (100/options.columns) + '%';
+
+                var isIE = /*@cc_on!@*/false || !!document.documentMode; //Check that if IE(6-11)
+                if (isIE) {
+                  responseItems[i].style.width = ((100/options.columns) - 1) + '% !important';
+                } else {
+                  responseItems[i].style.width = (100/options.columns) + '%';
+                }
             }
 
             var style = responseItems[0].currentStyle || window.getComputedStyle(responseItems[0]),

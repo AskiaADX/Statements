@@ -3,6 +3,7 @@ Dim inputName = CurrentQuestion.InputName()
 Dim inputID
 Dim inputValue = CurrentQuestion.InputValue()
 Dim caption
+Dim rawCaption
 Dim image
 Dim index
 Dim attrExclusive
@@ -31,6 +32,8 @@ For i = 1 to ar.Count
         otherIDarray.Push(ar[i].Index)
     Endif
 Next i
+Dim splitCaption
+Dim arialabel
 
 %}
 <input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
@@ -41,6 +44,12 @@ Dim nbColumns = numberOfColumns
 Dim showHeader    =CurrentADC.PropValue("showHeaders") ="1"
 Dim expandableHeaders = CurrentADC.PropValue("expandableHeaders") ="1"
 Dim accordionInitialState = CurrentADC.PropValue("accordionInitialState")
+
+Dim inputAnswers = ""
+
+For k = 1 To CurrentQuestion.Answers.Count
+    inputAnswers = inputAnswers + CurrentQuestion.Answers[k].InputValue().ToString() + On(k < CurrentQuestion.Answers.Count,",","")
+Next k
 
 IF (numberOfColumns > 0) Then
 
@@ -58,6 +67,15 @@ IF (numberOfColumns > 0) Then
         index		= ar[flowDirection].index
         attrExclusive = On(ar[flowDirection].IsExclusive, " exclusive", "")
         isHeader  = ar[flowDirection].isHeader
+        rawCaption  = ar[flowDirection].Caption
+
+        splitCaption = rawCaption.Split("|")
+    		caption = splitCaption[1]
+        if (len(splitCaption[2]) > 0) Then
+            	arialabel = splitCaption[2]
+    		else
+              arialabel = caption
+    		EndIf
 
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
@@ -65,9 +83,9 @@ IF (numberOfColumns > 0) Then
 
         {% If ((isHeader = False) or (showHeader = True)) Then %}
       		{% If (isHeader = true) Then %}
-  				    <div class="responseHeader"  onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+  			  <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
               {% Else %}
-              <div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+              <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}" onmousedown="return false;">
           {% EndIF %}
 
             {% IF (image <> "") Then %}
@@ -104,10 +122,19 @@ Else
     For j = 1 To ar.Count
         inputValue  = ar[j].InputValue()
         caption     = ar[j].Caption
+        rawCaption  = ar[j].Caption
         image		= ar.ResourceURL[j]
         index		= ar[j].index
         attrExclusive = On(ar[j].IsExclusive, " exclusive", "")
-		    isHeader = ar[j].isHeader
+		isHeader = ar[j].isHeader
+
+        splitCaption = rawCaption.Split("|")
+    		caption = splitCaption[1]
+    		if len(splitCaption[2]) > 0 Then
+    			arialabel = splitCaption[2]
+    		else
+    			arialabel = caption
+    		EndIf
         %}
 
 		    {% If ((isHeader = False) or (showHeader = True)) Then %}
@@ -130,7 +157,7 @@ Else
 
                   For m = 1 To chr.Count
                   %}
-                  <div class="response responseItem{%= attrExclusive %}" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}">
+                  <div class="response responseItem{%= attrExclusive %}" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}" aria-label="{%= arialabel %}" onmousedown="return false;">
                   		{% IF (chr.ResourceURL[m] <> "") Then %}
                       		<img src="{%= chr.ResourceURL[m] %}" onmousedown='return false;' alt="{%:= chr[m].Caption %}"/>
             			    {% EndIF %}
@@ -149,11 +176,11 @@ Else
                 {% Next m %}
               </div>
             {% ElseIf ((isHeader = false) AND (ar[j].Parent.isHeader <> true)) Then %}
-        			<div class="response responseItem{%= attrExclusive %} nhr" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}">
+        			<div class="response responseItem{%= attrExclusive %} nhr" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}" aria-label="{%= arialabel %}" onmousedown="return false;">
             		{% IF (image <> "") Then %}
-                		<img src="{%= image %}" onmousedown='return false;' alt="{%:= caption %}"/>
+                		<img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
           	    {% EndIF %}
-              	<span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
+              	<span class="response_text" onmousedown="return false;">{%:= caption %}</span>
               	<div style="clear:both"></div>
                 	{% For k = 1 To otherIDarray.Count
                     	otherID = otherIDarray[k].ToNumber()
