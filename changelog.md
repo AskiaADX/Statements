@@ -74,3 +74,4 @@ Version
 		v4.1.0 - Enable deselection of statement for single-coded questions
 		v4.1.1 - Changed GUID cause duplicate with StatementOther
 		v4.1.2 - Merged the master branch cause some functionalities was missing in develop
+		v4.1.3 - Fixed issue when columncount > 1
