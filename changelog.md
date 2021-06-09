@@ -75,3 +75,4 @@ Version
 		v4.1.1 - Changed GUID cause duplicate with StatementOther
 		v4.1.2 - Merged the master branch cause some functionalities was missing in develop
 		v4.1.3 - Fixed issue when columncount > 1
+		v4.2.0 - tabIndex/focus management of responses
