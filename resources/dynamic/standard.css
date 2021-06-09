@@ -357,3 +357,8 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
         -webkit-user-select: none;
         -o-user-select: none;
 }
+
+.response:focus {
+  outline: auto;
+  outline-width: thin;
+}
