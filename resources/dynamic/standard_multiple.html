@@ -85,7 +85,7 @@ IF (numberOfColumns > 0) Then
       		{% If (isHeader = true) Then %}
   			  <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
               {% Else %}
-              <div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
+              <div class="response responseItem{%= attrExclusive %} multiple" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
           {% EndIF %}
 
             {% IF (image <> "") Then %}
@@ -157,7 +157,7 @@ Else
 
                   For m = 1 To chr.Count
                   %}
-                  <div class="response responseItem{%= attrExclusive %}" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}" aria-label="{%= arialabel %}">
+                  <div class="response responseItem{%= attrExclusive %} multiple" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}" aria-label="{%= arialabel %}">
                   		{% IF (chr.ResourceURL[m] <> "") Then %}
                       		<img src="{%= chr.ResourceURL[m] %}" onmousedown='return false;' alt="{%:= chr[m].Caption %}"/>
             			    {% EndIF %}
@@ -176,7 +176,7 @@ Else
                 {% Next m %}
               </div>
             {% ElseIf ((isHeader = false) AND (ar[j].Parent.isHeader <> true)) Then %}
-        			<div class="response responseItem{%= attrExclusive %} nhr" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}" aria-label="{%= arialabel %}">
+        			<div class="response responseItem{%= attrExclusive %} nhr multiple" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}" aria-label="{%= arialabel %}">
             		{% IF (image <> "") Then %}
                 		<img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
           	    {% EndIF %}

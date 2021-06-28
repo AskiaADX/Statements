@@ -167,6 +167,21 @@
           deselectionEnabled = options.deselectionEnabled,
             animateResponses = Boolean(options.animateResponses);
 
+            addEvent(document, 'askiaSetValue',
+             (function (passedInElement) {
+                return function (data) {
+                  let val = data.detail.value;
+                  if (Array.isArray(val)){
+                    for (var i = 0; i < val.length; i++) {
+                      let response = document.querySelector('[data-value="'+ val[i].inputCode +'"]');
+                      if (response)
+                        (response.classList.contains('multiple')) ? selectStatementMultiple(response) : selectStatementSingle(response);
+                    }
+                  }
+                };
+            }(this)));
+
+
         for(var i = 0; i < inputs.length; i++) {
             if(inputs[i].type.toLowerCase() === 'submit') {
                submitBtns.push(inputs[i]);
@@ -598,6 +613,7 @@
         // Select a statement for multiple
         // @this = target node
         function selectStatementMultiple(target) {
+          console.log(target);
             var value = target.getAttribute('data-value'),
                  input = document.querySelector(items[target.getAttribute('data-id')].element),
                  isExclusive = target.classList.contains('exclusive') ? true : false,
