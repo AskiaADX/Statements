@@ -420,10 +420,15 @@
         }
 
         // Attach all events
-        for ( i=0; i<responses.length; i++) {
+        for ( i = 0; i < responses.length; i++) {
             responses[i].onclick = function(e){
                 (!isMultiple) ? selectStatementSingle(this) : selectStatementMultiple(this);
             };
+            responses[i].onkeyup = function(e){
+                if(e.keyCode == 32){
+                  (!isMultiple) ? selectStatementSingle(this) : selectStatementMultiple(this);
+                }
+            }
         }
 
         function restoreRangeColour(index) {
@@ -459,7 +464,7 @@
                 return valueToAdd;
             }
             var arr = String(currentValue).split(','), i, l, wasFound = false;
-                for (i = 0, l = arr.length; i < l; i += 1) {
+                    for (i = 0, l = arr.length; i < l; i += 1) {
                 if (arr[i] === valueToAdd) {
                     wasFound = true;
                     break;

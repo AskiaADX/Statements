@@ -269,7 +269,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 
 /* Non-header root element */
 #adc_{%= CurrentADC.InstanceId%} .nhr {
-	margin: 0 !important;
+	/* margin: 0 !important; */
 	margin-top: 0.5em !important;
 }
 
@@ -356,4 +356,9 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
         -khtml-user-select: none;
         -webkit-user-select: none;
         -o-user-select: none;
+}
+
+.response:focus {
+  outline: auto;
+  outline-width: thin;
 }
