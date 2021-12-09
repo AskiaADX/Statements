@@ -2,7 +2,7 @@
     <div id="adc_{%= CurrentADC.InstanceId %}" class="adc-statementsOther" style="visibility:hidden;">
      {% IF CurrentQuestion.Type = "single" Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_single.html").ToText()%}
-     {% ElseIf CurrentQuestion.Type = "multiple" Then %}
+     {% ElseIf (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_multiple.html").ToText()%}
      {% EndIF %}
      <div id="jsObj{%= CurrentADC.InstanceId%}"></div>

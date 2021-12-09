@@ -26,7 +26,7 @@ Next i
 		imageAlign : '{%= CurrentADC.PropValue("imageAlign") %}',
 		imageWidth : 100,
 		imageHeight : 100,
-		isMultiple: {%= (CurrentQuestion.Type = "multiple") %},
+		isMultiple: {%= (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") %},
 		controlWidth : '{%= CurrentADC.PropValue("controlWidth") %}',
 		columns: {%= CurrentADC.PropValue("columns") %},
 		maxWidth : '{%= CurrentADC.PropValue("maxWidth") %}',
@@ -46,7 +46,7 @@ Next i
         otherRID : '{%= strOtherRID %}',
 		otherQID : '{%= strOtherQID %}',
     expandableHeaders : {%= (CurrentADC.PropValue("expandableHeaders") = "1") %},
-    deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},    
+    deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
     accordionInitialState : '{%= CurrentADC.PropValue("accordionInitialState") %}',
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
         mergeColumnWidth : '{%= CurrentADC.PropValue("mergeColumnWidth") %}',
@@ -57,7 +57,7 @@ Next i
 		items : [
 			{% IF CurrentQuestion.Type = "single" Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
-			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
+			{% ElseIf (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
 			{% EndIF %}
 		]

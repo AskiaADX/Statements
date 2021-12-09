@@ -55,7 +55,7 @@ Version
 		v4.0.0 - Non clickable responses without prefixHeader
 	    v4.0.1 - Semi-open questions
 	    v4.0.2 - fix issue when columns > 0
-	    v4.0.3 - active headers - issue fux
+	    v4.0.3 - active headers - issue fix
 	    v4.0.4 - AvailableResponses & manageHeader = true
 	    v4.0.5 - manageSemiOpen = true
 	    v4.0.6 - Response groups
@@ -77,3 +77,4 @@ Version
 		v4.1.3 - Fixed issue when columncount > 1
 		v4.2.0 - tabIndex/focus management of responses
 		v4.3.0 - share directory removed
+		v4.3.1 - Fixed - loop-preliminary selection issue

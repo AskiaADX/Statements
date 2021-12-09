@@ -93,6 +93,7 @@ IF (numberOfColumns > 0) Then
             {% EndIF %}
             <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
             <div style="clear:both"></div>
+
             {% For k = 1 To otherIDarray.Count
             	otherID = otherIDarray[k].ToNumber()
             	IF (index = otherID) Then %}
