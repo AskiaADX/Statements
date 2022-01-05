@@ -35,9 +35,8 @@ Next i
 Dim splitCaption
 Dim arialabel
 
-%}
-<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
-{%
+Dim inputVal = CurrentQuestion.InputValue()
+
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
 Dim flow = CurrentADC.PropValue("columnsFlow")
 Dim nbColumns = numberOfColumns
@@ -50,6 +49,10 @@ Dim inputAnswers = ""
 For k = 1 To CurrentQuestion.Answers.Count
     inputAnswers = inputAnswers + CurrentQuestion.Answers[k].InputValue().ToString() + On(k < CurrentQuestion.Answers.Count,",","")
 Next k
+
+%}
+<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%:= inputAnswers %}" />
+{%
 
 IF (numberOfColumns > 0) Then
 

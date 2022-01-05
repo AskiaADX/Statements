@@ -78,3 +78,4 @@ Version
 		v4.2.0 - tabIndex/focus management of responses
 		v4.3.0 - share directory removed
 		v4.3.1 - Fixed - loop-preliminary selection issue
+        v4.3.2 - 

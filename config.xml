@@ -7,8 +7,8 @@
   <info>
     <name>Statements</name>
     <guid>752ea3ea-05d4-4230-b285-e46c21f25113</guid>
-    <version>4.3.1</version>
-    <date>2021-12-06</date>
+    <version>4.3.2</version>
+    <date>2022-01-04</date>
     <description><![CDATA[Describe your ADC here]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -18,7 +18,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" manageSemiOpen="true"/>
+      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" manageSemiOpen="true" />
       <constraint on="controls" responseblock="true" textbox="true" label="true" checkbox="false" listbox="false" radiobutton="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
@@ -526,7 +526,6 @@
         <description><![CDATA[Header colour]]></description>
         <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
-
       <property xsi:type="standardProperty" id="headerGroupPadding" name="Header group padding" type="string" mode="dynamic" visible="true">
         <description><![CDATA[Header group box padding]]></description>
         <value><![CDATA[10px]]></value>

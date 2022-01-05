@@ -404,11 +404,11 @@
         }
       }
     } else if (isMultiple) {
+
       var input = document.querySelector(items[0].element),
         currentValues = String(input.value).split(","),
         currentValue;
 
-        console.log(input);
       for (i = 0; i < currentValues.length; i++) {
         currentValue = currentValues[i];
         for (var j = 0; j < responses.length; j++) {
@@ -635,7 +635,6 @@
         if (!isExclusive) {
           // Check if any exclusive
           currentValue = addValue(currentValue, value);
-
           if (otherRIDarray.indexOf(target.getAttribute('data-index')) !== -1) {
             target.querySelector('.otherText').style.display = '';
             target.querySelector('.otherText').focus();
