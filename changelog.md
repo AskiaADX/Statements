@@ -78,5 +78,6 @@ Version
 		v4.2.0 - tabIndex/focus management of responses
 		v4.3.0 - share directory removed
 		v4.3.1 - Fixed - loop-preliminary selection issue
-        v4.3.2 - 
+        v4.3.2 -
         v4.3.3 - Fixed - unable to add spaces on semi-opens
+				v4.3.4 - Require no loops

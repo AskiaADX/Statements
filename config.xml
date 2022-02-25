@@ -7,8 +7,8 @@
   <info>
     <name>Statements</name>
     <guid>752ea3ea-05d4-4230-b285-e46c21f25113</guid>
-    <version>4.3.3</version>
-    <date>2022-01-20</date>
+    <version>4.3.4</version>
+    <date>2022-02-25</date>
     <description><![CDATA[Describe your ADC here]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -18,7 +18,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" manageSemiOpen="true" />
+      <constraint on="questions" single="true" multiple="true" open="true" chapter="false" date="false" numeric="false" requireParentLoop="false" requireLoopDepth="0" manageHeader="true" manageSemiOpen="true" />
       <constraint on="controls" responseblock="true" textbox="true" label="true" checkbox="false" listbox="false" radiobutton="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
