@@ -81,4 +81,5 @@ Version
         v4.3.2 -
         v4.3.3 - Fixed - unable to add spaces on semi-opens
 				v4.3.4 - Require no loops
-				v4.3.5 - no need of Jquery plugin 
+				v4.3.5 - no need of Jquery plugin
+				v4.3.6 - Allow html on response captions
