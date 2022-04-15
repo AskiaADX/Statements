@@ -86,15 +86,15 @@ IF (numberOfColumns > 0) Then
 
         {% If ((isHeader = False) or (showHeader = True)) Then %}
       		{% If (isHeader = true) Then %}
-  			  <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
+  			  <div class="responseHeader" onmousedown="return false;" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%:= arialabel %}">
               {% Else %}
-              <div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%= arialabel  %}">
+              <div class="response responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}" aria-label="{%:= arialabel %}">
           {% EndIF %}
 
             {% IF (image <> "") Then %}
                 <img src="{%= image %}" onmousedown='return false;'  alt="{%:= caption %}"/>
             {% EndIF %}
-            <span class="response_text" onmousedown='return false;'>{%:= caption %}</span>
+            <span class="response_text" onmousedown='return false;' aria-label="{%:= arialabel %}">{%= caption %}</span>
             <div style="clear:both"></div>
 
             {% For k = 1 To otherIDarray.Count
@@ -161,11 +161,11 @@ Else
 
                   For m = 1 To chr.Count
                   %}
-                  <div class="response responseItem{%= attrExclusive %}" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}" aria-label="{%= arialabel %}">
+                  <div class="response responseItem{%= attrExclusive %}" data-value="{%= chr[m].InputValue() %}" data-id="{%= j %}" data-index="{%= chr[m].index %}" aria-label="{%:= arialabel %}">
                   		{% IF (chr.ResourceURL[m] <> "") Then %}
                       		<img src="{%= chr.ResourceURL[m] %}" onmousedown='return false;' alt="{%:= chr[m].Caption %}"/>
             			    {% EndIF %}
-                  	<span class="response_text" onmousedown='return false;'>{%:= chr[m].Caption %}</span>
+                  	<span class="response_text" onmousedown='return false;' aria-label="{%:= arialabel %}">{%= chr[m].Caption %}</span>
                   	<div style="clear:both"></div>
                   	{% For k = 1 To otherIDarray.Count
                       	otherID = otherIDarray[k].ToNumber()
@@ -180,11 +180,11 @@ Else
                 {% Next m %}
               </div>
             {% ElseIf ((isHeader = false) AND (ar[j].Parent.isHeader <> true)) Then %}
-        			<div class="response responseItem{%= attrExclusive %} nhr" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}" aria-label="{%= arialabel %}">
+        			<div class="response responseItem{%= attrExclusive %} nhr" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}" aria-label="{%:= arialabel %}">
             		{% IF (image <> "") Then %}
                 		<img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
           	    {% EndIF %}
-              	<span class="response_text" onmousedown="return false;">{%:= caption %}</span>
+              	<span class="response_text" onmousedown="return false;" aria-label="{%:= arialabel %}">{%= caption %}</span>
               	<div style="clear:both"></div>
                 	{% For k = 1 To otherIDarray.Count
                     	otherID = otherIDarray[k].ToNumber()
