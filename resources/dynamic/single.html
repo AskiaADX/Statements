@@ -18,7 +18,7 @@ If (useList) Then %}
         inputValue   = ar[i].InputValue()
         caption      = ar[i].Caption
         %}
-        <option value="{%= inputValue %}" {%:= attrSelected %}>{%= caption %}</option>
+        <option value="{%= inputValue %}" {%:= attrSelected %}>{%:= caption %}</option>
     {% Next %}
     </select>
 {% Else %}
@@ -42,7 +42,7 @@ If (useList) Then %}
             	{% IF (resource <> "") Then %}
                     <img src="{%= resource %}" style="vertical-align:middle" alt="{%= caption %}"/>
                 {% EndIf %}
-                {%= caption %}</label>
+                {%:= caption %}</label>
             </td>
         </tr>
         {% Next %}
