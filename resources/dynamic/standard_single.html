@@ -58,7 +58,8 @@ IF (numberOfColumns > 0) Then
         rawCaption  = ar[flowDirection].Caption
 
         splitCaption = rawCaption.Split("|")
-		      caption = splitCaption[1]
+	      caption = splitCaption[1]
+
         if len(splitCaption[2]) > 0 then
         	arialabel = splitCaption[2]
         else
@@ -78,7 +79,7 @@ IF (numberOfColumns > 0) Then
               {% IF (image <> "") Then %}
                   <img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%:= caption %}</span>
+              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%= caption %}</span>
               <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
@@ -149,7 +150,7 @@ Else
               {% IF (chr.ResourceURL[m] <> "") Then %}
                   <img src="{%= chr.ResourceURL[m] %}" onmousedown="return false;" alt="{%:= chr[m].Caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%:= caption %}</span>
+              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
               <div style="clear:both"></div>
                 {% For k = 1 To otherIDarray.Count
                 	otherID = otherIDarray[k].ToNumber()
@@ -168,7 +169,7 @@ Else
             {% IF (image <> "") Then %}
                 <img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
             {% EndIF %}
-            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%:= caption %}</span>
+            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
             <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
