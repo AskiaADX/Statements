@@ -165,7 +165,7 @@ Else
                   		{% IF (chr.ResourceURL[m] <> "") Then %}
                       		<img src="{%= chr.ResourceURL[m] %}" onmousedown='return false;' alt="{%:= chr[m].Caption %}"/>
             			    {% EndIF %}
-                  	<span class="response_text" onmousedown='return false;' aria-label="{%= arialabel %}">{%= caption %}</span>
+                  	<span class="response_text" onmousedown='return false;' aria-label="{%= arialabel %}">{%= chr[m].Caption %}</span>
                   	<div style="clear:both"></div>
                   	{% For k = 1 To otherIDarray.Count
                       	otherID = otherIDarray[k].ToNumber()

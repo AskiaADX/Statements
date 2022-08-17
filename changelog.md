@@ -83,5 +83,6 @@ Version
 				v4.3.4 - Require no loops
 				v4.3.5 - no need of Jquery plugin
 				v4.3.6 - Allow html on response captions
-        v4.3.7 - Fix html on response captions
+        v4.3.7 -
 				v4.3.8 - Fix html on response captions
+				v4.3.9 - Simple fix/header caption displayed in child-responses
