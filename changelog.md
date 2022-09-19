@@ -86,3 +86,4 @@ Version
         v4.3.7 -
 				v4.3.8 - Fix html on response captions
 				v4.3.9 - Simple fix/header caption displayed in child-responses
+				v4.3.10 - manageLoopDepth set to 0
