@@ -7,8 +7,8 @@
   <info>
     <name>Statements</name>
     <guid>752ea3ea-05d4-4230-b285-e46c21f25113</guid>
-    <version>4.3.9</version>
-    <date>2022-08-17</date>
+    <version>4.3.10</version>
+    <date>2022-09-19</date>
     <description><![CDATA[Describe your ADC here]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
@@ -24,7 +24,7 @@
     </constraints>
   </info>
   <outputs defaultOutput="fallback">
-    <output id="fallback" manageLoopDepth="1">
+    <output id="fallback" manageLoopDepth="0">
       <description><![CDATA[
         Fallback when the browser doesnacute;t support Javascript
       ]]></description>
@@ -35,7 +35,7 @@
       <content fileName="multiple.html" type="html" mode="dynamic" position="none" />
       <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
     </output>
-    <output id="standard" manageLoopDepth="1">
+    <output id="standard" manageLoopDepth="0">
       <description><![CDATA[
         Output when the browser support Javascript
       ]]></description>
