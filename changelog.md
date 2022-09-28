@@ -72,18 +72,19 @@ Version
 	    v4.0.15 - Fixed missing e at True
 			v4.0.16 - Remove header:hover when non expandable
 		v4.1.0 - Enable deselection of statement for single-coded questions
-		v4.1.1 - Changed GUID cause duplicate with StatementOther
-		v4.1.2 - Merged the master branch cause some functionalities was missing in develop
-		v4.1.3 - Fixed issue when columncount > 1
+			v4.1.1 - Changed GUID cause duplicate with StatementOther
+			v4.1.2 - Merged the master branch cause some functionalities was missing in develop
+			v4.1.3 - Fixed issue when columncount > 1
 		v4.2.0 - tabIndex/focus management of responses
 		v4.3.0 - share directory removed
-		v4.3.1 - Fixed - loop-preliminary selection issue
-        v4.3.2 -
-        v4.3.3 - Fixed - unable to add spaces on semi-opens
-				v4.3.4 - Require no loops
-				v4.3.5 - no need of Jquery plugin
-				v4.3.6 - Allow html on response captions
-        v4.3.7 -
-				v4.3.8 - Fix html on response captions
-				v4.3.9 - Simple fix/header caption displayed in child-responses
-				v4.3.10 - manageLoopDepth set to 0
+			v4.3.1 - Fixed - loop-preliminary selection issue
+      v4.3.2 -
+      v4.3.3 - Fixed - unable to add spaces on semi-opens
+			v4.3.4 - Require no loops
+			v4.3.5 - no need of Jquery plugin
+			v4.3.6 - Allow html on response captions
+      v4.3.7 -
+			v4.3.8 - Fix html on response captions
+			v4.3.9 - Simple fix/header caption displayed in child-responses
+			v4.3.10 - manageLoopDepth set to 0
+	 v4.4.0 - Libraries update		
