@@ -390,7 +390,7 @@
       for (i = 0; i < responseItems.length; i++) {
         responseItems[i].setAttribute('data-id', i);
         var value = responseItems[i].getAttribute('data-value'),
-          isSelected = responseItems[i].getAttribute('data-value') === currentValue ? true : false;
+          isSelected = ((value == currentValue) && (value != "")) ? true : false;                        
         if (isSelected) {
           addClass(responseItems[i], 'selected');
           if (otherRIDarray.indexOf(responseItems[i].getAttribute('data-index')) >= 0) {
@@ -415,7 +415,7 @@
           if (hasClass(responses[j], 'responseItem') && !hasClass(responses[j], 'exclusive')) addClass(responses[j], 'cb');
           responses[j].setAttribute('data-id', j);
           var value = responses[j].getAttribute('data-value'),
-            isSelected = responses[j].getAttribute('data-value') == currentValue ? true : false;
+            isSelected = ((value == currentValue) && (value != "")) ? true : false;
           if (isSelected) {
             addClass(responses[j], 'selected');
             if (otherRIDarray.indexOf(responses[j].getAttribute('data-index')) >= 0) {
