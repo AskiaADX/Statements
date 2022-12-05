@@ -1,4 +1,5 @@
 {%
+Dim instanceId = CurrentADC.InstanceId
 Dim inputName = CurrentQuestion.InputName()
 Dim inputID
 Dim inputValue = CurrentQuestion.InputValue()
@@ -143,7 +144,7 @@ Else
 
 		    {% If ((isHeader = False) or (showHeader = True)) Then %}
         		{% If (isHeader = True) Then %}
-        				<div id="headerResponse{%= j %}" class="responseHeader" data-value="{%= inputValue %}" data-id="{%= j %}" data-index="{%= index %}">
+        				<div id="headerResponse{%= j %}_{%=instanceId %}" class="responseHeader" data-value="{%= inputValue %}" data-id="{%= j %}_{%=instanceId %}" data-index="{%= index %}">
                   {%
                   If (expandableHeaders = True) Then
                       If (accordionInitialState = "expanded") Then %}
@@ -153,7 +154,7 @@ Else
                       {% EndIf %}
                   {% EndIf %}
                   {%:= caption %}</div>
-                <div id="headerGroup{%= j %}" class="headerGroupWrap">
+                <div id="headerGroup{%= j %}_{%=instanceId %}" class="headerGroupWrap">
                   {%
                   Dim m
                   Dim chr
