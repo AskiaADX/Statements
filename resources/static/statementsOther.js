@@ -390,7 +390,7 @@
       for (i = 0; i < responseItems.length; i++) {
         responseItems[i].setAttribute('data-id', i);
         var value = responseItems[i].getAttribute('data-value'),
-          isSelected = ((value == currentValue) && (value != "")) ? true : false;                        
+          isSelected = ((value == currentValue) && (value != "")) ? true : false;
         if (isSelected) {
           addClass(responseItems[i], 'selected');
           if (otherRIDarray.indexOf(responseItems[i].getAttribute('data-index')) >= 0) {
