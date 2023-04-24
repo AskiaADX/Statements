@@ -90,3 +90,4 @@ Version
 	 v4.4.0 - Libraries update		
 	 		v4.4.1 -
 			v4.4.2 - Fixed - Expandable headers when screens are merged
+			v4.4.3 - Fixed - html render issue on response captions
