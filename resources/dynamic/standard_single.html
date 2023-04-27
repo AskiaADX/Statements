@@ -3,7 +3,6 @@ Dim instanceId = CurrentADC.InstanceId
 Dim inputName = CurrentQuestion.InputName()
 Dim inputValue = CurrentQuestion.InputValue()
 Dim caption
-Dim rawCaption
 Dim image
 Dim index
 Dim isHeader
@@ -30,7 +29,7 @@ Next i
 %}
 <input type="hidden" id="{%= inputName %}" name="{%= inputName %}" value="{%= inputValue %}"  />
 {%
-Dim splitCaption
+Dim splitcapsArr
 Dim arialabel
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
@@ -52,20 +51,18 @@ IF (numberOfColumns > 0) Then
             flowDirection = i
         EndIf
         inputValue  = ar[flowDirection].InputValue()
-        caption     = ar[flowDirection].Caption
         image		= ar.ResourceURL[flowDirection]
         index		= ar[flowDirection].index
         isHeader  = ar[flowDirection].isHeader
-        rawCaption  = ar[flowDirection].Caption
 
-        splitCaption = rawCaption.Split("|")
-	      caption = splitCaption[1]
-
-        if len(splitCaption[2]) > 0 then
-        	arialabel = splitCaption[2]
-        else
-          arialabel = caption
-        EndIf
+        splitcapsArr = ar[flowDirection].Caption.Split("|")
+        IF splitcapsArr.Count > 1 THEN
+            caption = splitcapsArr[1]
+            ariaLabel = splitcapsArr[2]
+        ELSE
+            caption = splitcapsArr[1]
+            ariaLabel = splitcapsArr[1]
+        ENDIF
 
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
@@ -78,7 +75,7 @@ IF (numberOfColumns > 0) Then
         		<div class="response responseItem" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}" aria-label="{%= arialabel %}">
         {% EndIF %}
               {% IF (image <> "") Then %}
-                  <img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
+                  <img src="{%= image %}" onmousedown="return false;" alt="{%= caption %}"/>
               {% EndIF %}
               <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%= caption %}</span>
               <div style="clear:both"></div>
@@ -114,17 +111,19 @@ Else
     For j = 1 To ar.Count
         inputValue  = ar[j].InputValue()
         caption     = ar[j].Caption
-        rawCaption  = ar[j].Caption
         image		= ar.ResourceURL[j]
         index		= ar[j].index
         isHeader  = ar[j].isHeader
-        splitCaption = rawCaption.Split("|")
-    		  caption = splitCaption[1]
-    		if len(splitCaption[2]) > 0 then
-    			arialabel = splitCaption[2]
-    		else
-    			arialabel = caption
-    		EndIf
+
+        splitcapsArr = ar[j].Caption.Split("|")
+        IF splitcapsArr.Count > 1 THEN
+            caption = splitcapsArr[1]
+            ariaLabel = splitcapsArr[2]
+        ELSE
+            caption = splitcapsArr[1]
+            ariaLabel = splitcapsArr[1]
+        ENDIF
+
     %}
 
      	{% If ((isHeader = False) or (showHeader = True)) Then %}
@@ -138,7 +137,7 @@ Else
                 <i class="plus"></i>
                 {% EndIf %}
             {% EndIf %}
-            {%:= caption %}</div>
+            {%= caption %}</div>
           <div id="headerGroup{%= j %}_{%= instanceId %}" class="headerGroupWrap">
             {%
             Dim m
@@ -146,12 +145,22 @@ Else
           	chr = ar[j].Children
 
           	For m = 1 To chr.Count
+
+            splitcapsArr = chr[m].Caption.Split("|")
+            IF splitcapsArr.Count > 1 THEN
+                caption = splitcapsArr[1]
+                ariaLabel = splitcapsArr[2]
+            ELSE
+                caption = splitcapsArr[1]
+                ariaLabel = splitcapsArr[1]
+            ENDIF
+
             %}
             <div class="response responseItem" data-value="{%= chr[m].InputValue() %}" data-id="{%= m %}" data-index="{%= chr[m].index %}" aria-label="{%= arialabel %}">
               {% IF (chr.ResourceURL[m] <> "") Then %}
-                  <img src="{%= chr.ResourceURL[m] %}" onmousedown="return false;" alt="{%:= chr[m].Caption %}"/>
+                  <img src="{%= chr.ResourceURL[m] %}" onmousedown="return false;" alt="{%:= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= chr[m].Caption %}</span>
+              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
               <div style="clear:both"></div>
                 {% For k = 1 To otherIDarray.Count
                 	otherID = otherIDarray[k].ToNumber()
