@@ -34,6 +34,6 @@ gruntfile.js
 
 # TMP #
 ################
-Statement.tmp/
+*.tmp/
 
 *.ps1

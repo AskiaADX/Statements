@@ -7,9 +7,9 @@
   <info>
     <name>Statements</name>
     <guid>752ea3ea-05d4-4230-b285-e46c21f25113</guid>
-    <version>4.4.3</version>
-    <date>2023-04-21</date>
-    <description><![CDATA[Describe your ADC here]]></description>
+    <version>4.5.0</version>
+    <date>2023-05-17</date>
+    <description><![CDATA[Statements ADC]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>]]></author>
     <site>http://www.askia.com</site>

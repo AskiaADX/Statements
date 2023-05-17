@@ -82,8 +82,11 @@ Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
 Dim otherShadow =CurrentADC.PropValue("otherShadow")
 Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 
+Dim isTestModeEnabled = CurrentADP.PropValue("test_mode_enabled")
 %}
-
+{% If isTestModeEnabled = "yes" Then %}
+	.controlContainer{ overflow: visible !important;}
+{% EndIF %}
 
 /* Reponses */
 #adc_{%= CurrentADC.InstanceId%} .responseItem
@@ -361,4 +364,56 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 .response:focus {
   outline: auto;
   outline-width: thin;
+}
+
+.test-info {
+	color:red !important;
+}
+.r-tag {
+	background-color: {%= Theme.PrimaryDarkColor.ToHexa() %};
+	color: {%= Theme.WhiteColor.ToHexa() %};
+	display: inline-block;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-align: center;
+	border-radius: 0.1875em;
+}
+/* ROUTING-INFO */
+.routing-info {
+	position: absolute;
+	background-color: beige;
+	/* border: 0.5px solid grey; */
+	color: black;
+	display: inline-block;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-align: center;
+	/* border-radius: 0.1875em; */
+	font-size: initial;
+	/* border: 6px solid black;
+	border-color: transparent transparent transparent black; */
+}
+.i-tag {
+	font-size: initial;
+	margin-left: 0.1em;
+}
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	text-align: left;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	left: 100%;
+	opacity: 0;
+	transition: opacity 0.3s;
+	white-space: nowrap;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
 }

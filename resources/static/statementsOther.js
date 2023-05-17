@@ -1,3 +1,21 @@
+//
+function writeRoutingInfo(txt, infoElem) {
+  var htmlcontent = '';
+  var arr = txt.split(";");
+  for (var i = 0; i < arr.length; i++) {
+    if (i > 0) {
+      htmlcontent=htmlcontent+'</br>';
+    }
+    htmlcontent=htmlcontent+'<span style="color:blue">  ▸ </span>'+arr[i];
+  }
+  infoElem.children[1].innerHTML = htmlcontent;
+  infoElem.children[1].classList.add("routing-info");
+}
+function removeRoutingInfo(infoElem) {
+  infoElem.children[1].innerHTML = "";
+  infoElem.children[1].classList.remove("routing-info");
+}
+
 (function() {
 
   // Polyfill: Add a getElementsByClassName function IE < 9

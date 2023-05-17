@@ -26,6 +26,7 @@ For i = 1 to ar.Count
     Endif
 Next i
 
+Dim isTestModeEnabled = CurrentADP.PropValue("test_mode_enabled")
 %}
 <input type="hidden" id="{%= inputName %}" name="{%= inputName %}" value="{%= inputValue %}"  />
 {%
@@ -77,7 +78,17 @@ IF (numberOfColumns > 0) Then
               {% IF (image <> "") Then %}
                   <img src="{%= image %}" onmousedown="return false;" alt="{%= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%= caption %}</span>
+              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">
+                {% If isTestModeEnabled = "yes" Then %}
+                  <span class="r-tag">{%:= ar[flowDirection].EntryCodeStr %}</span>
+                {% EndIF %}
+                {%= caption %}
+                {% If isTestModeEnabled = "yes" Then %}
+                  {% If ar[flowDirection].Routings.Count > 0 Then %}
+                    <span onmouseover="writeRoutingInfo('{%:= ar[flowDirection].Routings %}', this)" onmouseout="removeRoutingInfo(this)"><span class="i-tag">ℹ️</span><span></span></span>
+                  {% EndIF %}
+                {% EndIF %}              
+              </span>
               <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
@@ -160,7 +171,17 @@ Else
               {% IF (chr.ResourceURL[m] <> "") Then %}
                   <img src="{%= chr.ResourceURL[m] %}" onmousedown="return false;" alt="{%:= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
+              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">
+                {% If isTestModeEnabled = "yes" Then %}
+                  <span class="r-tag">{%:= chr[m].EntryCodeStr %}</span>
+                {% EndIF %}
+                {%= caption %}
+                {% If isTestModeEnabled = "yes" Then %}
+                  {% If chr[m].Routings.Count > 0 Then %}
+                    <span onmouseover="writeRoutingInfo('{%:= ar[j].Routings %}', this)" onmouseout="removeRoutingInfo(this)" class="tooltip"><span class="i-tag">ℹ️</span><span class="tooltiptext"></span></span>
+                  {% EndIF %}
+                {% EndIF %}              
+              </span>
               <div style="clear:both"></div>
                 {% For k = 1 To otherIDarray.Count
                 	otherID = otherIDarray[k].ToNumber()
@@ -179,7 +200,17 @@ Else
             {% IF (image <> "") Then %}
                 <img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
             {% EndIF %}
-            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
+            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">
+              {% If isTestModeEnabled = "yes" Then %}
+                <span class="r-tag">{%:= ar[j].EntryCodeStr %}</span>
+              {% EndIF %}
+              {%= caption %}
+              {% If isTestModeEnabled = "yes" Then %}
+                {% If ar[j].Routings.Count > 0 Then %}
+                  <span onmouseover="writeRoutingInfo('{%:= ar[j].Routings %}', this)" onmouseout="removeRoutingInfo(this)" class="tooltip"><span class="i-tag">ℹ️</span><span class="tooltiptext"></span></span>
+                {% EndIF %}
+              {% EndIF %}            
+            </span>
             <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
