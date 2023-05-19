@@ -99,7 +99,7 @@ IF (numberOfColumns > 0) Then
               {% If isTestModeEnabled = "yes" Then %}
                 <span class="r-tag">{%:= ar[flowDirection].EntryCodeStr %}</span>
               {% EndIF %}
-              {%= caption %}
+              {%:= caption %}
               {% If isTestModeEnabled = "yes" Then %}
                 {% If ar[flowDirection].Routings.Count > 0 Then %}
                   <span onmouseover="writeRoutingInfo('{%:= ar[flowDirection].Routings %}', this)" onmouseout="removeRoutingInfo(this)"><span class="i-tag">ℹ️</span><span></span></span>
@@ -163,7 +163,7 @@ Else
                       <i class="plus"></i>
                       {% EndIf %}
                   {% EndIf %}
-                  {%= caption %}</div>
+                  {%:= caption %}</div>
                 <div id="headerGroup{%= j %}_{%=instanceId %}" class="headerGroupWrap">
                   {%
                   Dim m
@@ -190,10 +190,10 @@ Else
                       {% If isTestModeEnabled = "yes" Then %}
                         <span class="r-tag">{%:= chr[m].EntryCodeStr %}</span>
                       {% EndIF %}
-                      {%= caption %}
+                      {%:= caption %}
                       {% If isTestModeEnabled = "yes" Then %}
                         {% If chr[m].Routings.Count > 0 Then %}
-                          <span onmouseover="writeRoutingInfo('{%:= ar[j].Routings %}', this)" onmouseout="removeRoutingInfo(this)" class="tooltip"><span class="i-tag">ℹ️</span><span class="tooltiptext"></span></span>
+                          <span onmouseover="writeRoutingInfo('{%:= chr[m].Routings %}', this)" onmouseout="removeRoutingInfo(this)" class="tooltip"><span class="i-tag">ℹ️</span><span class="tooltiptext"></span></span>
                         {% EndIF %}
                       {% EndIF %}                    
                     </span>
@@ -219,7 +219,7 @@ Else
                   {% If isTestModeEnabled = "yes" Then %}
                     <span class="r-tag">{%:= ar[j].EntryCodeStr %}</span>
                   {% EndIF %}
-                  {%= caption %}
+                  {%:= caption %}
                   {% If isTestModeEnabled = "yes" Then %}
                     {% If ar[j].Routings.Count > 0 Then %}
                       <span onmouseover="writeRoutingInfo('{%:= ar[j].Routings %}', this)" onmouseout="removeRoutingInfo(this)" class="tooltip"><span class="i-tag">ℹ️</span><span class="tooltiptext"></span></span>
