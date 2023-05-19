@@ -77,7 +77,7 @@ IF (numberOfColumns > 0) Then
               {% IF (image <> "") Then %}
                   <img src="{%= image %}" onmousedown="return false;" alt="{%= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%= caption %}</span>
+              <span class="response_text" onmousedown="return false;"  aria-label="{%= arialabel %}">{%:= caption %}</span>
               <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
@@ -137,7 +137,7 @@ Else
                 <i class="plus"></i>
                 {% EndIf %}
             {% EndIf %}
-            {%= caption %}</div>
+            {%:= caption %}</div>
           <div id="headerGroup{%= j %}_{%= instanceId %}" class="headerGroupWrap">
             {%
             Dim m
@@ -160,7 +160,7 @@ Else
               {% IF (chr.ResourceURL[m] <> "") Then %}
                   <img src="{%= chr.ResourceURL[m] %}" onmousedown="return false;" alt="{%:= caption %}"/>
               {% EndIF %}
-              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
+              <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%:= caption %}</span>
               <div style="clear:both"></div>
                 {% For k = 1 To otherIDarray.Count
                 	otherID = otherIDarray[k].ToNumber()
@@ -177,9 +177,9 @@ Else
         {% ElseIf ((isHeader = false) AND (ar[j].Parent.isHeader <> true)) Then %}
 	    	  <div class="response responseItem nhr" data-value="{%= inputValue %}" data-id="{%= flowDirection %}" data-index="{%= index %}" aria-label="{%= arialabel %}">
             {% IF (image <> "") Then %}
-                <img src="{%= image %}" onmousedown="return false;" alt="{%:= caption %}"/>
+                <img src="{%= image %}" onmousedown="return false;" alt="{%= caption %}"/>
             {% EndIF %}
-            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%= caption %}</span>
+            <span class="response_text" onmousedown="return false;" aria-label="{%= arialabel %}">{%:= caption %}</span>
             <div style="clear:both"></div>
               {% For k = 1 To otherIDarray.Count
               	otherID = otherIDarray[k].ToNumber()
