@@ -144,7 +144,7 @@
   }
 
   function init(options) {
-    this.instanceId = options.instanceId || 1;
+        this.instanceId = options.instanceId || 1;
     this.options = options;
     (options.responseWidth = options.responseWidth || "auto");
     (options.responseHeight = options.responseHeight || "auto");
