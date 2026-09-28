@@ -513,8 +513,8 @@
           <option value="collapsed" text="Collapsed" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="forceExpandSelectedHeaders" name="Force Expand Headers With Selection" type="string" require="false" visible="true">
-        <description><![CDATA[When enabled, a response group containing a selected response is automatically expanded and cannot be collapsed until that group no longer contains a selection.]]></description>
+      <property xsi:type="standardProperty" id="forceExpandSelectedHeaders" name="Force Expand Headers on Answer" type="string" require="false" visible="true">
+        <description><![CDATA[Automatically force expands header group if a response is selected.]]></description>
         <value><![CDATA[0]]></value>
         <options>
           <option value="1" text="Yes" />
