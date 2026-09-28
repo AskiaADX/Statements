@@ -252,7 +252,28 @@
 
     // Headers expand/collapsed
     var expandableHeaders = options.expandableHeaders
+    var forceExpandSelectedHeaders = options.forceExpandSelectedHeaders
     var accordionInitialState = options.accordionInitialState
+
+    function headerGroupHasSelection(header) {
+      var id = header.dataset.id;
+      var group = document.getElementById("headerGroup" + id);
+      return group && group.getElementsByClassName('selected').length > 0;
+    }
+
+    function forceOpenSelectedHeaderGroups() {
+      if (!expandableHeaders || !forceExpandSelectedHeaders) return;
+
+      var headers = container.querySelectorAll('.responseHeader');
+      for (var h = 0; h < headers.length; h++) {
+        if (headerGroupHasSelection(headers[h])) {
+          var id = headers[h].dataset.id;
+          $("#headerGroup" + id).show();
+          $("i", headers[h]).removeClass("plus").addClass("minus");
+        }
+      }
+    }
+
     if (expandableHeaders) {
       var headerList = document.querySelectorAll('#adc_' + this.instanceId + ' .responseHeader');
       for (var i = 0; i < headerList.length; i++) {
@@ -265,6 +286,13 @@
         }
         headerList[i].onclick = function() {
           var id = this.dataset.id;
+
+          if (forceExpandSelectedHeaders && headerGroupHasSelection(this)) {
+            $("#headerGroup" + id).show();
+            $("i", this).removeClass("plus").addClass("minus");
+            return;
+          }
+
           if (animateResponses) {
             $("#headerGroup" + id).toggle('slow');
           } else {
@@ -464,6 +492,8 @@
       }
     }
 
+    forceOpenSelectedHeaderGroups();
+
     // For multi-coded question
     // Add the @valueToAdd in @currentValue (without duplicate)
     // and return the new value
@@ -597,6 +627,8 @@
       }
 
 
+      forceOpenSelectedHeaderGroups();
+
       if (window.askia &&
         window.arrLiveRoutingShortcut &&
         window.arrLiveRoutingShortcut.length > 0 &&
@@ -700,6 +732,8 @@
 
       // Update the value
       input.value = currentValue;
+
+      forceOpenSelectedHeaderGroups();
 
       if (window.askia &&
         window.arrLiveRoutingShortcut &&

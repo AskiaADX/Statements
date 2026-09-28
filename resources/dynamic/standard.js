@@ -46,6 +46,7 @@ Next i
         otherRID : '{%= strOtherRID %}',
 		otherQID : '{%= strOtherQID %}',
     expandableHeaders : {%= (CurrentADC.PropValue("expandableHeaders") = "1") %},
+    forceExpandSelectedHeaders : {%= (CurrentADC.PropValue("forceExpandSelectedHeaders") = "1") %},
     deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
     accordionInitialState : '{%= CurrentADC.PropValue("accordionInitialState") %}',
 		rangeGradientDirection : '{%= CurrentADC.PropValue("rangeGradientDirection") %}',
