@@ -7,7 +7,7 @@
   <info>
     <name>Statements</name>
     <guid>752ea3ea-05d4-4230-b285-e46c21f25113</guid>
-    <version>4.4.5</version>
+    <version>4.4.6</version>
     <date>2023-08-11</date>
     <description><![CDATA[Describe your ADC here]]></description>
     <company>Askia</company>
@@ -511,6 +511,14 @@
         <options>
           <option value="expanded" text="Expanded" />
           <option value="collapsed" text="Collapsed" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="forceExpandSelectedHeaders" name="Force Expand Headers on Answer" type="string" require="false" visible="true">
+        <description><![CDATA[Automatically force expands header group if a response is selected.]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
         </options>
       </property>
       <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
